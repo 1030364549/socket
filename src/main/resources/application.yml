@@ -1,0 +1,43 @@
+# 配置
+config:
+  # 监听端口 2323
+  port: 2323
+  # 线程池 - 保持线程数 100
+  thread-pool: 100
+  # 超时时间 30000
+  time-out: 30000
+  # 税点封顶值
+  tax: 0.08
+  # 电签税点封顶值
+  dq-tax: 0.09
+  #ip地址
+  ip: 127.0.0.1
+
+#mybatis配置
+mybatis:
+  #mapper的接口xml文件的地址
+  mapper-locations: mybatise/mapper/*.xml
+  configLocation: classpath:mybatise/sqlMapConfig.xml
+
+
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@//192.168.1.70:1521/dba
+    username: lfb_web
+    password: lfb_web
+    driver-class-name: oracle.jdbc.OracleDriver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 10
+    maxActive: 100
+    maxWait: 60000
+    validationQuery: select 1 from dual
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    testOnBorrow: true
+    testOnReturn: true
+    testWhileIdle: true
+    removeAbandoned: true
+    removeAbandonedTimeout: 1800
+    logAbandoned: true
+    filters: mergeStat

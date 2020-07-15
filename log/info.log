@@ -1,0 +1,174 @@
+[11:17:34:849] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 37292 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:17:34:862] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:17:35:440] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.815 seconds (JVM running for 1.44)
+[11:17:37:906] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:31:40:472] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 65312 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:31:40:475] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:31:41:065] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.822 seconds (JVM running for 1.501)
+[11:33:36:308] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:36:40:738] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 35796 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:36:40:741] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:36:41:338] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.842 seconds (JVM running for 1.511)
+[11:36:43:147] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:39:42:461] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 64192 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:39:42:464] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:39:43:061] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.841 seconds (JVM running for 1.549)
+[11:39:44:340] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:39:44:788] [INFO] - com.umf.service.mianservice.TradingService.mainService(TradingService.java:67) - 嘤嘤嘤
+[11:45:54:661] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 67408 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:45:54:663] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:45:55:247] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.811 seconds (JVM running for 1.496)
+[11:45:56:495] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:45:56:943] [INFO] - com.umf.service.mianservice.TradingService.mainService(TradingService.java:76) - 嘤嘤嘤
+[13:58:10:115] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 40068 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[13:58:10:117] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[13:58:10:502] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[13:58:57:085] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 42148 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[13:58:57:087] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[13:58:57:471] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[13:59:48:210] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 63064 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[13:59:48:213] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[13:59:48:604] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[14:00:10:253] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 33480 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:00:10:255] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:00:10:657] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[14:01:17:779] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 43096 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:01:17:781] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:01:18:164] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[14:01:41:334] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 68568 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:01:41:336] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:01:41:739] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[14:02:47:336] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 61956 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:02:47:339] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:02:47:720] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[14:05:51:464] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 36944 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:05:51:466] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:05:51:846] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[14:07:06:002] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 59176 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:07:06:005] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:07:06:388] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[14:10:52:148] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 50084 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:10:52:150] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:10:52:535] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[14:12:18:632] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 51524 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:12:18:634] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:12:19:219] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.814 seconds (JVM running for 1.465)
+[14:13:57:440] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 36784 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:13:57:442] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:13:58:001] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.794 seconds (JVM running for 1.52)
+[14:16:52:716] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 58324 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:16:52:718] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:16:53:289] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.797 seconds (JVM running for 1.474)
+[14:18:24:078] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 25068 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:18:24:080] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:18:24:671] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.834 seconds (JVM running for 1.484)
+[14:23:10:679] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 67708 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:23:10:682] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:23:11:271] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.819 seconds (JVM running for 1.514)
+[14:24:16:663] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 50488 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:24:16:666] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:24:17:234] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.793 seconds (JVM running for 1.433)
+[14:25:28:805] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 27052 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:25:28:808] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:25:29:389] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.815 seconds (JVM running for 1.479)
+[14:37:05:180] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 41356 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:37:05:183] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:37:05:744] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.79 seconds (JVM running for 1.48)
+[14:39:00:318] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 68740 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:39:00:321] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:39:00:898] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.83 seconds (JVM running for 1.497)
+[14:43:43:060] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 37340 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:43:43:062] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:43:43:639] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.816 seconds (JVM running for 1.486)
+[14:56:08:398] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 55696 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:56:08:402] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:56:08:987] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.82 seconds (JVM running for 1.546)
+[14:58:07:927] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 57128 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:58:07:930] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:58:08:500] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.8 seconds (JVM running for 1.508)
+[15:05:33:160] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 34112 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[15:05:33:163] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[15:05:33:730] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.793 seconds (JVM running for 1.549)
+[15:10:06:382] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 64552 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[15:10:06:385] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[15:10:06:966] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.812 seconds (JVM running for 1.512)
+[15:15:40:628] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 70304 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[15:15:40:635] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[15:15:41:210] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.808 seconds (JVM running for 1.5)
+[15:28:59:114] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 23648 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[15:28:59:121] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[15:28:59:735] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.884 seconds (JVM running for 1.584)
+[15:31:45:272] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 44556 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[15:31:45:278] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[15:31:45:846] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.815 seconds (JVM running for 1.508)
+[15:32:23:612] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 53236 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[15:32:23:618] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[15:32:24:205] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.815 seconds (JVM running for 1.485)
+[15:32:29:454] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[15:32:29:926] [INFO] - com.umf.service.mianservice.TradingService.mainService(TradingService.java:78) - 嘤嘤嘤
+[15:32:48:052] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 42628 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[15:32:48:059] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[15:32:48:675] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.85 seconds (JVM running for 1.548)
+[15:32:52:987] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[15:56:08:075] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 8332 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[15:56:08:081] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[15:56:08:700] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[15:56:40:811] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 7820 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[15:56:40:817] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[15:56:41:342] [INFO] - org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:136) - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[15:57:02:480] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 43700 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[15:57:02:487] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[15:57:03:114] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.887 seconds (JVM running for 1.604)
+[15:57:06:019] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[15:59:39:376] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 69076 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[15:59:39:383] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[15:59:39:956] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.801 seconds (JVM running for 1.481)
+[15:59:41:622] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[16:00:05:197] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 26464 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[16:00:05:203] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[16:00:05:790] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.819 seconds (JVM running for 1.512)
+[16:00:07:188] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[16:19:13:802] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 23368 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[16:19:13:809] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[16:19:14:399] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.819 seconds (JVM running for 1.52)
+[16:19:18:351] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[16:21:29:788] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 60816 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[16:21:29:794] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[16:21:30:391] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.874 seconds (JVM running for 1.581)
+[16:21:32:613] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[16:41:04:309] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 38596 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[16:41:04:316] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[16:41:04:926] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.845 seconds (JVM running for 1.512)
+[16:41:06:345] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[16:41:32:468] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 61636 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[16:41:32:474] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[16:41:33:076] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.842 seconds (JVM running for 1.522)
+[16:41:37:573] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[16:42:05:656] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 18092 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[16:42:05:662] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[16:42:06:259] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.826 seconds (JVM running for 1.533)
+[16:42:08:284] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited

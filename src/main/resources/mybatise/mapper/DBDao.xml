@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatise.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.umf.dao.DBDao">
+
+    <!--判断是否为渠道-->
+    <select id="selAgNat" resultType="string" parameterType="map">
+        <choose>
+            <when test="msgtype=='H007'">
+                select agent_nature from agent_info where agent_num in (select agent_num from formal_pos where posno = #{posno})
+            </when>
+            <otherwise>
+                select agent_nature from agent_info where agent_num in (select agent_no from merchant_info where merno = #{merno})
+            </otherwise>
+        </choose>
+    </select>
+
+    <!--判断是否为渠道-->
+    <select id="selSerial" resultType="int">
+        select count(*) as serial from
+        <choose>
+            <when test="isChannel==0">
+                 profit_detailed
+            </when>
+            <otherwise>
+                 channel_profit_detailed
+            </otherwise>
+        </choose>
+        where serial = #{serial}
+    </select>
+
+    <!--查询要分润的结算数据（小微）-->
+    <select id="selAuditdataXW" resultType="map" parameterType="map">
+        select do.*,decode(ra.ar_type,'','',ra.ar_type) as aff_type,decode(ra.ar_type,0,substr(ra.ar_content,3),ra.ar_content) as aff_content from (
+        select cbx.serial,do.terno as posno,do.localdate,do.localtime,do.mer_no as merno,mr.mer_category,fp.machine_num sn,fp.agent_num,cbx.card_type as cardtype,decode(do.msgtype,'H007',0,'H302',2,'H201',4,'H202',3) as msgtype,do.settle_type as sett_type,
+        cbx.amount/100 as amount,(cbx.mer_charge+cbx.mer_charge_fj)/100 as charge,mr.rate_code as rate_code,'0' as affix_charge,'FJ000' as rate_affix,
+        cbx.settle_money/100 as tmoney,do.trade_no as rrno,mi.mer_shortname mer_shortname,'' as ld_merno,nvl(mi.vip_status,'0000-00-00') as vip_status,ai.agent_name,fp.pos_type,
+        ra.ar_type,decode(ra.ar_type,0,substr(ra.ar_content,3),ra.ar_content) as ar_content,nvl(mw.price_ratio,0) as price_ratio,'' as inputtype,'0' as isdissmis,'0' as isysf,'' as pan,'' as bno,'0' as phonepay,'' as tj_rate_fee,'' as tj_fj
+        from channel_bill_xw cbx left join deal_online do on do.serial = cbx.serial
+        left join formal_pos fp on fp.posno = do.terno left join merchant_info mi on mi.merno = do.mer_no
+        left join agent_info ai on ai.agent_num = fp.agent_num
+        left join merchant_rate mr on mr.merno = do.mer_no and mr.msgtype = do.msgtype and mr.settle_type = do.settle_type
+        left join rate_algorithm ra on ra.ar_mark = mr.rate_code left join merchant_warn_price mw on mw.mer_no = do.mer_no
+        where cbx.serial = #{serial} and do.msgtype =#{msgtype} and do.mer_no = #{merno}
+        ) do left join rate_algorithm ra on ra.ar_mark = do.rate_affix
+    </select>
+
+    <!--查询要分润的结算数据（非渠道）-->
+    <select id="selAuditdata" resultType="map" parameterType="map">
+        <choose>
+            <when test="msgtype=='H007'">
+                select au.*,decode(ra.ar_type,'','',ra.ar_type) as aff_type,decode(ra.ar_type,0,substr(ra.ar_content,3),ra.ar_content) as aff_content from (
+                select au.serial,au.posno,au.localdate,au.localtime,au.merno,au.mer_category,au.sn,fp.agent_num,au.cardtype,decode(au.msgtype,'H007',0,'H302',2,'H201',4,'H202',3) as msgtype,decode(substr(au.inputtype,0,2),'07',0,'05',1,'02',2) as inputtype,au.isdissmis,
+                au.isysf,au.sett_type,au.amount,au.charge,au.rate_code,au.affix_charge,au.rate_affix,au.pan,au.bno,au.tmoney,au.rrno,au.phonepay,mi.mer_shortname,mi.ld_merno,nvl(mi.vip_status,'0000-00-00') as vip_status,
+                ai.agent_name,fp.pos_type,ra.ar_type,decode(ra.ar_type,0,substr(ra.ar_content,3),ra.ar_content) as ar_content,nvl(mw.price_ratio,0) as price_ratio,be.isvip as vip,au.tj_rate_fee,mi.tj_fj from auditdata au
+                left join bank_expenditure be on be.serial = au.serial left join formal_pos fp on fp.posno = au.posno left join agent_info ai on ai.agent_num = fp.agent_num left join merchant_info mi on mi.merno = au.merno left join rate_algorithm ra on ra.ar_mark = au.rate_code left join merchant_warn_price mw on mw.mer_no = au.merno
+                where au.serial = #{serial} and au.msgtype = #{msgtype} and au.merno = #{merno} and is_profit = '0' and au.amount between ra.onset_money and ra.end_money
+                ) au left join rate_algorithm ra on ra.ar_mark = au.rate_affix
+            </when>
+            <otherwise>
+                select au.*,decode(ra.ar_type,'','',ra.ar_type) as aff_type,decode(ra.ar_type,0,substr(ra.ar_content,3),ra.ar_content) as aff_content from (
+                select au.serial,au.posno,au.localdate,au.localtime,au.merno,au.mer_category,au.sn,fp.agent_num,au.cardtype,decode(au.msgtype,'H007',0,'H302',2,'H201',4,'H202',3) as msgtype,decode(substr(au.inputtype,0,2),'07',0,'05',1,'02',2) as inputtype,au.isdissmis,
+                au.isysf,au.sett_type,au.amount,au.charge,au.rate_code,au.affix_charge,au.rate_affix,au.pan,au.bno,au.tmoney,au.rrno,au.phonepay,mi.mer_shortname,mi.ld_merno,nvl(mi.vip_status,'0000-00-00') as vip_status,
+                ai.agent_name,fp.pos_type,ra.ar_type,decode(ra.ar_type,0,substr(ra.ar_content,3),ra.ar_content) as ar_content,nvl(mw.price_ratio,0) as price_ratio,au.tj_rate_fee,mi.tj_fj from auditdata au
+                left join formal_pos fp on fp.posno = au.posno left join agent_info ai on ai.agent_num = fp.agent_num left join merchant_info mi on mi.merno = au.merno left join rate_algorithm ra on ra.ar_mark = au.rate_code left join merchant_warn_price mw on mw.mer_no = au.merno
+                where au.serial = #{serial} and au.msgtype = #{msgtype} and au.merno = #{merno} and is_profit = '0' and au.amount between ra.onset_money and ra.end_money
+                ) au left join rate_algorithm ra on ra.ar_mark = au.rate_affix
+            </otherwise>
+        </choose>
+    </select>
+
+    <!--查询要分润的结算数据（渠道）-->
+    <select id="selChannelAuditdata" resultType="map" parameterType="map">
+        select au.serial,au.msgtype,au.localdate,au.localtime,au.merno,mi.mer_shortname,au.mer_category,ai.agent_num,ai.agent_name,au.cardtype,au.sett_type,au.amount,au.charge,au.affix_charge,au.tmoney,au.posno,au.isysf,au.inscharges
+        from auditdata au left join formal_pos fp on fp.posno = au.posno
+		left join agent_info ai on ai.agent_num = fp.agent_num
+		left join merchant_info mi on mi.merno = au.merno
+		where au.serial = #{serial} and au.msgtype = #{msgtype} and au.merno = #{merno} and is_profit = '0'
+    </select>
+
+    <!--查询代理商信息-->
+    <select id="selAgdata" resultType="map">
+        select aa.agent_num,aa.agent_name,aa.agent_level,aa.isgradually,nvl(bb.agent_num,'0') as lower_agent_num,nvl(bb.agent_name,'0') as lower_agent_name from (
+		select a.agent_num,a.agent_name,a.agent_level,a.belong_agent,a.isgradually from agent_info a start with a.agent_num = #{agent_num} connect by prior a.belong_agent = a.agent_num ) aa
+		left join ( select b.agent_num, b.agent_name, b.agent_level, b.belong_agent from agent_info b start with b.agent_num = #{agent_num} connect by prior b.belong_agent = b.agent_num ) bb on aa.agent_num = bb.belong_agent order by aa.agent_level desc
+	</select>
+
+    <!--查询代理商信息-->
+    <select id="selAgdata" resultType="map">
+        select aa.agent_num,aa.agent_name,aa.agent_level,aa.isgradually,nvl(bb.agent_num,'0') as lower_agent_num,nvl(bb.agent_name,'0') as lower_agent_name from (
+        select a.agent_num,a.agent_name,a.agent_level,a.belong_agent,a.isgradually from agent_info a start with a.agent_num = #{agent_num} connect by prior a.belong_agent = a.agent_num ) aa
+        left join ( select b.agent_num, b.agent_name, b.agent_level, b.belong_agent from agent_info b start with b.agent_num = #{agent_num} connect by prior b.belong_agent = b.agent_num ) bb on aa.agent_num = bb.belong_agent order by aa.agent_level desc
+    </select>
+
+</mapper>
+
