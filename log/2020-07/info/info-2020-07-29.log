@@ -1,0 +1,57 @@
+[11:24:11:867] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 57632 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:24:11:893] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:24:13:117] [INFO] - org.springframework.aop.framework.CglibAopProxy.doValidateClass(CglibAopProxy.java:262) - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+[11:24:13:304] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 1.824 seconds (JVM running for 3.054)
+[11:24:16:329] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:26:02:747] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 12240 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:26:02:750] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:26:03:319] [INFO] - org.springframework.aop.framework.CglibAopProxy.doValidateClass(CglibAopProxy.java:262) - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+[11:26:03:408] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.881 seconds (JVM running for 1.699)
+[11:26:04:160] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:27:59:652] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 68972 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:27:59:654] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:28:00:233] [INFO] - org.springframework.aop.framework.CglibAopProxy.doValidateClass(CglibAopProxy.java:262) - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+[11:28:00:319] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.899 seconds (JVM running for 1.661)
+[11:28:01:640] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:30:39:998] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 44468 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:30:40:002] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:30:40:606] [INFO] - org.springframework.aop.framework.CglibAopProxy.doValidateClass(CglibAopProxy.java:262) - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+[11:30:40:696] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.928 seconds (JVM running for 1.712)
+[11:30:42:532] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:32:24:596] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 38972 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:32:24:598] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:32:25:179] [INFO] - org.springframework.aop.framework.CglibAopProxy.doValidateClass(CglibAopProxy.java:262) - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+[11:32:25:266] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.904 seconds (JVM running for 1.619)
+[11:32:27:905] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:35:04:275] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 25796 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:35:04:278] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:35:04:848] [INFO] - org.springframework.aop.framework.CglibAopProxy.doValidateClass(CglibAopProxy.java:262) - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+[11:35:04:933] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.893 seconds (JVM running for 1.617)
+[11:35:06:160] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:40:25:071] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 41336 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:40:25:073] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:40:25:654] [INFO] - org.springframework.aop.framework.CglibAopProxy.doValidateClass(CglibAopProxy.java:262) - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+[11:40:25:747] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.904 seconds (JVM running for 1.66)
+[11:40:27:679] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[11:45:19:984] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 49036 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[11:45:19:986] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[11:45:20:612] [INFO] - org.springframework.aop.framework.CglibAopProxy.doValidateClass(CglibAopProxy.java:262) - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+[11:45:20:710] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.953 seconds (JVM running for 1.831)
+[11:45:21:254] [INFO] - com.umf.utils.LogUtil.info(LogUtil.java:31) - ************************************************************
+【系统时间】:2020-07-29 11:45:21
+【请求地址】:/127.0.0.1
+【交易流水】:100034286328
+【请求报文】:{merno=100000000167702, msgtype=H007, posno=100001394407, serial=100034286328, signature=71CCE4E14A35122B31F176795BBDDA0F}
+
+[11:45:21:318] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[14:10:03:250] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 33300 (F:\work\socket\target\classes started by asus in F:\work\socket)
+[14:10:03:253] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[14:10:03:822] [INFO] - org.springframework.aop.framework.CglibAopProxy.doValidateClass(CglibAopProxy.java:262) - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+[14:10:03:909] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 0.892 seconds (JVM running for 1.572)
+[14:10:06:243] [INFO] - com.umf.utils.LogUtil.info(LogUtil.java:31) - ************************************************************
+【系统时间】:2020-07-29 14:10:06
+【请求地址】:/127.0.0.1
+【交易流水】:100034286328
+【请求报文】:{merno=100000000167702, msgtype=H007, posno=100001394407, serial=100034286328, signature=71CCE4E14A35122B31F176795BBDDA0F}
+
+[14:10:06:324] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
