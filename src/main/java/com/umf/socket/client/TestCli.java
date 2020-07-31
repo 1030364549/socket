@@ -1,4 +1,4 @@
-package com.umf.Test;
+package com.umf.socket.client;
 
 import com.umf.utils.EncryUtil;
 import com.umf.utils.LoFunction;
@@ -25,15 +25,15 @@ public class TestCli {
 
     public static void main(String[] args) throws Exception {
         Map<String, String> data = new TreeMap<>();
-//        data.put("serial", "X10000048296");     // 交易流水号
-//        data.put("merno", "100000000167425");      // 商户编号
-//        data.put("posno", "910000800036");      // 终端号
-//        data.put("msgtype", "H201");// 交易类型 0 线下 1 线上
-//        data.put("localdate", "2020-04-03");     // 时间
-        data.put("serial", "X100034286328");     // 交易流水号
-        data.put("merno", "100000000167702");      // 商户编号
-        data.put("posno", "100001394407");      // 终端号
-        data.put("msgtype", "H007");// 交易类型 0 线下 1 线上
+//        data.put("serial", "X10000048296");       // 交易流水号
+//        data.put("merno", "100000000167425");     // 商户编号
+//        data.put("posno", "910000800036");        // 终端号
+//        data.put("msgtype", "H201");              // 交易类型
+//        data.put("localdate", "2020-04-03");      // 时间
+        data.put("serial", "100034286328");
+        data.put("merno", "100000000167702");
+        data.put("posno", "100001394407");
+        data.put("msgtype", "H007");
         data.put("signature", getSign(data));
         String reqdata= lo.changeMapToJson(data);
         byte[] resByte = reqdata.getBytes();

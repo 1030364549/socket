@@ -9,30 +9,25 @@ import java.util.Map;
 /**
  * @Package com.umf.dao
  * @Author:LiuYuKun
- * @Date:2020/7/10 11:43
+ * @Date:2020/7/16 15:57
  * @Description:
  */
+@SuppressWarnings("all")
 @Repository
 public interface DBDao {
 
-    /** 是否渠道 */
-    String selAgNat(Map<String, String> posReqMap);
+    List<Map<String,String>> getList(String id, Object params);
 
-    /** 查询流水是否存在 */
-    Integer selSerial(@Param("isChannel") String isChannel, @Param("serial") String serial);
+    Map<String, String> getMap(String id, Object params);
 
-    /** 分润数据（小微） */
-    Map<String, String> selAuditdataXW(Map<String, String> posReqMap);
+    Integer getInteger(String id, Object params);
 
-    /** 分润数据（非渠道） */
-    Map<String, String> selAuditdata(Map<String, String> posReqMap);
+    String getString(String id,Object params);
 
-    /** 分润数据（渠道） */
-    Map<String, String> selChannelAuditdata(Map<String, String> posReqMap);
+    int update(String id,Object params);
 
-    /** 代理数据 */
-    List<Map<String, String>> selAgdata(@Param("agent_num") String agent_num);
+    int insert(String id,Object params);
 
-    /** 是否活动 */
-    String isAct(@Param("localdate") String localdate, @Param("posno") String posno);
+    int delete(String id,Object params);
+
 }

@@ -8,4 +8,12 @@
         <typeAlias alias="double" type="java.lang.Double"/>
         <typeAlias alias="long" type="java.lang.Long"/>
     </typeAliases>
+    <!-- 拦截器 -->
+    <plugins>
+        <plugin interceptor="com.umf.utils.MapperInterceptor">
+            <property name="databaseType" value="oracle"/>
+            <property name="printSql" value="1"/>       <!-- 自定义 是否打印sql语句 -->
+            <property name="writeSqlLog" value="1"/>    <!--自定义 是否存储sql语句日志 -->
+        </plugin>
+    </plugins>
 </configuration>

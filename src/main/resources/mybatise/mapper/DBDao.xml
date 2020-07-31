@@ -3,7 +3,7 @@
 <mapper namespace="com.umf.dao.DBDao">
 
     <!--判断是否为渠道-->
-    <select id="selAgNat" resultType="string" parameterType="map">
+    <select id="selAgNat" parameterType="map" resultType="string">
         <choose>
             <when test="msgtype=='H007'">
                 select agent_nature from agent_info where agent_num in (select agent_num from formal_pos where posno = #{posno})
@@ -15,10 +15,10 @@
     </select>
 
     <!--判断是否为渠道-->
-    <select id="selSerial" resultType="int">
+    <select id="selSerial" parameterType="map" resultType="int">
         select count(*) as serial from
         <choose>
-            <when test="isChannel==0">
+            <when test="isChannel=='0'">
                  profit_detailed
             </when>
             <otherwise>
@@ -29,7 +29,7 @@
     </select>
 
     <!--查询要分润的结算数据（小微）-->
-    <select id="selAuditdataXW" resultType="map" parameterType="map">
+    <select id="selAuditdataXW" parameterType="map" resultType="map">
         select do.*,decode(ra.ar_type,'','',ra.ar_type) as aff_type,decode(ra.ar_type,0,substr(ra.ar_content,3),ra.ar_content) as aff_content from (
         select cbx.serial,do.terno as posno,do.localdate,do.localtime,do.mer_no as merno,mr.mer_category,fp.machine_num sn,fp.agent_num,cbx.card_type as cardtype,decode(do.msgtype,'H007',0,'H302',2,'H201',4,'H202',3) as msgtype,do.settle_type as sett_type,
         cbx.amount/100 as amount,(cbx.mer_charge+cbx.mer_charge_fj)/100 as charge,mr.rate_code as rate_code,'0' as affix_charge,'FJ000' as rate_affix,
@@ -45,7 +45,7 @@
     </select>
 
     <!--查询要分润的结算数据（非渠道）-->
-    <select id="selAuditdata" resultType="map" parameterType="map">
+    <select id="selAuditdata" parameterType="map" resultType="map">
         <choose>
             <when test="msgtype=='H007'">
                 select au.*,decode(ra.ar_type,'','',ra.ar_type) as aff_type,decode(ra.ar_type,0,substr(ra.ar_content,3),ra.ar_content) as aff_content from (
@@ -69,7 +69,7 @@
     </select>
 
     <!--查询要分润的结算数据（渠道）-->
-    <select id="selChannelAuditdata" resultType="map" parameterType="map">
+    <select id="selChannelAuditdata" parameterType="map" resultType="map">
         select au.serial,au.msgtype,au.localdate,au.localtime,au.merno,mi.mer_shortname,au.mer_category,ai.agent_num,ai.agent_name,au.cardtype,au.sett_type,au.amount,au.charge,au.affix_charge,au.tmoney,au.posno,au.isysf,au.inscharges
         from auditdata au left join formal_pos fp on fp.posno = au.posno
 		left join agent_info ai on ai.agent_num = fp.agent_num
@@ -85,11 +85,123 @@
 	</select>
 
     <!--查询代理商信息-->
-    <select id="selAgdata" resultType="map">
-        select aa.agent_num,aa.agent_name,aa.agent_level,aa.isgradually,nvl(bb.agent_num,'0') as lower_agent_num,nvl(bb.agent_name,'0') as lower_agent_name from (
-        select a.agent_num,a.agent_name,a.agent_level,a.belong_agent,a.isgradually from agent_info a start with a.agent_num = #{agent_num} connect by prior a.belong_agent = a.agent_num ) aa
-        left join ( select b.agent_num, b.agent_name, b.agent_level, b.belong_agent from agent_info b start with b.agent_num = #{agent_num} connect by prior b.belong_agent = b.agent_num ) bb on aa.agent_num = bb.belong_agent order by aa.agent_level desc
+    <select id="isAct" parameterType="map" resultType="string">
+        select act_id from act_active where act_id in (select act_id from branch_pos where posno = #{posno}) and end_time >= #{localdate}
     </select>
 
+    <!--查询非渠道结算底价-->
+    <select id="selPoldata" parameterType="map" resultType="map">
+        SELECT adr.agent_id, substr(afd.settlement_price, '3') AS sett_price, afd.ceiling_cost AS ceiling_cost
+			, substr(afd.surcharge, '3') AS surcharge, afd.surcharge_ein AS surcharge_ein, afd.distribution_ratio
+			, tp.tax_point
+		FROM (
+			SELECT agent_id
+				, decode(#{pos_type}, '0', decode(#{proMark}, '0', ct_pip_divided_id, '1', ct_act_divided_id), '1', decode(#{proMark}, '0', pip_divided_id, '1', act_divided_id, '2', vip_divided_id), '2', lc_dviid, '4', decode(#{proMark}, '0', dq_divided_id, '2', dqvip_divided_id)) AS divided_id
+			FROM agent_divided_rule
+			WHERE agent_id IN (
+				SELECT agent_num
+				FROM agent_info
+				START WITH agent_num = #{agent_num}
+				CONNECT BY PRIOR belong_agent = agent_num
+			)
+		) adr
+			LEFT JOIN act_fprice_detailed afd ON afd.fprice_rules_id = adr.divided_id
+			LEFT JOIN tax_point tp ON tp.agent_num = adr.agent_id
+		WHERE afd.distribution_type =
+        <choose>
+            <when test="isysf=='1'.toString()">
+                '1'
+            </when>
+            <otherwise>
+                #{msgtype}
+            </otherwise>
+        </choose>
+			AND afd.settlement_type = #{sett_type}
+			AND profit_mark = #{proMark}
+			AND tp.type =
+        <choose>
+            <when test="pos_type=='4'.toString()">
+                '2'
+            </when>
+            <otherwise>
+                #{pos_type}
+            </otherwise>
+        </choose>
+        <if test="msgtype=='0'.toString() or isysf=='1'.toString()">
+            AND afd.card_type = #{cardtype}
+        </if>
+    </select>
+
+    <!--添加分润-->
+    <insert id="insProData" parameterType="map">
+        insert into profit_detailed (id,serial,localdate,localtime,merno,mer_name,mer_category,pos_sn,activity,agent_num,agent_name,belong_agent,belong_agent_name,
+		card_type,pay_type,accept_type,double_exemption,quick_pay,settle_method,amount,mer_rate,surcharge_rate,mer_charge,surcharge_charge,
+		is_capping,settle_ratio,surcharge_ratio,charge_profit,surcharge_profit,createdate,createtime,createman,activity_name,pan,rrno,bno,money,
+		profit_agent_num,profit_agent_name,posno,charge_profit_below,surcharge_profit_below,agent_level,isgradually,level_tax,below_tax,level_tax_profit,below_tax_profit,profit_tax_diff,tax,pos_type,ld_merno,addlevel_tax,addbelow_tax,addlevel_tax_profit,addbelow_tax_profit,addprofit_tax_diff,price_ratio,distribution_ratio,tj_profit,tj_profit_below)
+		values (seq_profit_detailed.nextval,#{serial},#{localdate},#{localtime},#{merno},
+        #{mer_shortname},#{isVip},#{sn},#{isAct},#{agent_num},#{agent_name},
+        #{lower_agent_numAg},#{lower_agent_nameAg},#{cardtype},#{msgtype},#{inputtypeNew},
+        #{isdissmis},#{isysf},#{sett_type},#{amount},#{rate_code},#{rate_affix},#{charge},
+        #{affix_charge},#{ar_type},#{ar_typeNew},#{aff_typeNew},
+        #{proMoney},#{addproMoney},#{createdateNew},#{createtimeNew},
+        #{createmanNew},#{actId},#{pan},#{rrno},
+        #{bno},#{tmoney},#{agent_numAg},#{agent_nameAg},#{posno},
+        #{proSumMoney},#{addproSumMoney},#{agent_levelAg},#{isgraduallyAg},
+        #{level_taxNew},#{below_taxNew},#{level_tax_profitNew},#{below_tax_profitNew},
+        #{profit_tax_diffNew},#{tax_point},#{pos_type},#{ld_merno},
+        #{addlevel_taxNew},#{addbelow_taxNew},#{addlevel_tax_profitNew},
+        #{addbelow_tax_profitNew},#{addprofit_tax_diffNew},#{price_ratio}
+        ,#{distribution_ratioNew},#{tj_profitNew},#{tj_profit_belowNew})
+    </insert>
+
+    <!--查询机构费率-->
+    <select id="selChaRate" parameterType="map" resultType="string">
+        select decode(ra.ar_type,'0',substr(ra.ar_content,'3'),ra.ar_content) rate from agent_related ar
+		left join rate_algorithm ra on decode(#{sett_type},'0',ar.rated,'1', ar.rates) = ra.ar_mark
+		where ar.agent_num = #{agent_num} and ar.ratetype =
+        <choose>
+            <when test="isysf=='0'.toString()">
+                #{mer_category}
+            </when>
+            <otherwise>
+                '3'
+            </otherwise>
+        </choose>
+		and credit_type = #{cardtype} and #{amount} between ra.onset_money and ra.end_money
+    </select>
+
+    <!--添加渠道分润信息-->
+    <insert id="insChaData" parameterType="map">
+        insert into channel_profit_detailed(id,serial,localdate,localtime,merno,mer_name,ratetype,agent_num,agent_name,card_type,
+        settle_method,amount,mer_charge,money,posno,channel_cost,channel_profit,msgtype,affix_charge,aff_profit,sum_profit,cost,
+        inscharges) values(seq_channel_profit_detailed.nextval,#{serial},#{localdate},#{localtime},#{merno},#{mer_shortname},
+        #{mer_category},#{agent_num},#{agent_name},#{cardtype},#{sett_type},#{amount},#{charge},#{tmoney},#{posno},#{channel_cost},
+        #{channel_profit},#{msgtype},#{affix_charge},#{affix_charge},#{channel_profitNew},#{cost},#{inscharges})
+    </insert>
+
+    <!--修改清算表状态码为已发-->
+    <update id="upAudData">
+        update auditdata set is_profit = '1' where serial = #{serial}
+    </update>
+
+    <!--查询小微商户的基本信息-->
+    <select id="selXwData" parameterType="map" resultType="map">
+        select serial,mer_no,terno,msgtype from deal_online
+        where au_state = '1' and localdate between #{lastLocaldate} and #{localdate} and settle_type = '0'
+    </select>
+
+
+    <select id="select1" resultType="map" parameterType="map">
+        select * from agent_info where agent_name = #{agent_name} and agent_num = #{agent_num}
+    </select>
+    <insert id="insert1">
+        insert into pos_activation_card (pan,status,adddate,addtime) values(#{pan},'','','')
+    </insert>
+    <update id="update1" parameterType="map">
+        update pos_activation_card set pan = #{pan} where pan = #{oldPan}
+    </update>
+    <delete id="delete1">
+        delete pos_activation_card where pan = #{pan}
+    </delete>
 </mapper>
 

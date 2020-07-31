@@ -54,7 +54,7 @@
         <!--</RollingFile>-->
 
         <RollingFile name="RollingFileInfo" fileName="${FILE_PATH}/info.log"
-                     filePattern="${FILE_PATH}/$${date:yyyy-MM}/${FILE_INFO}/info-%d{yyyy-MM-dd}-%i.log">
+                     filePattern="${FILE_PATH}/$${date:yyyy-MM}/${FILE_INFO}/info-%d{yyyy-MM-dd}.log">
             <Filters>
                 <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
                 <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
@@ -81,7 +81,7 @@
 
 
         <RollingFile name="RollingFileError" fileName="${FILE_PATH}/error.log"
-                     filePattern="${FILE_PATH}/$${date:yyyy-MM}/${FILE_ERROR}/error-%d{yyyy-MM-dd}-%i.log">
+                     filePattern="${FILE_PATH}/$${date:yyyy-MM}/${FILE_ERROR}/error-%d{yyyy-MM-dd}.log">
             <ThresholdFilter level="ERROR"/>
             <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
             <Policies>

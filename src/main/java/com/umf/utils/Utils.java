@@ -1,7 +1,7 @@
 
 package com.umf.utils;
 
-import com.umf.config.Properties;
+import com.umf.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 public class Utils {
 
 	@Autowired
-	public Properties properties;
+	public Config config;
 	
 	/**
 	 * 
@@ -102,8 +102,8 @@ public class Utils {
 	 *********************************************************.<br>
 	 */
 	public BigDecimal taxMoney (String money, String taxPoint,String pos_type) throws Exception {
-		if(new BigDecimal(taxPoint).compareTo(new BigDecimal("4".equals(pos_type) ? properties.getDqtax() : properties.getTax())) == 1){
-			return new BigDecimal(money).multiply(new BigDecimal("4".equals(pos_type) ? properties.getDqtax() : properties.getTax())).setScale(2, BigDecimal.ROUND_HALF_UP);
+		if(new BigDecimal(taxPoint).compareTo(new BigDecimal("4".equals(pos_type) ? config.getDqtax() : config.getTax())) == 1){
+			return new BigDecimal(money).multiply(new BigDecimal("4".equals(pos_type) ? config.getDqtax() : config.getTax())).setScale(2, BigDecimal.ROUND_HALF_UP);
 		}
 		return new BigDecimal(money).multiply(new BigDecimal(taxPoint)).setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
@@ -119,11 +119,11 @@ public class Utils {
 	 *********************************************************.<br>
 	 */
 	public BigDecimal taxDiff(String money, String upTax , String taxPoint,String pos_type) throws Exception {
-		if(new BigDecimal(taxPoint).compareTo(new BigDecimal("4".equals(pos_type) ? properties.getDqtax() : properties.getTax())) == 1){
+		if(new BigDecimal(taxPoint).compareTo(new BigDecimal("4".equals(pos_type) ? config.getDqtax() : config.getTax())) == 1){
 			return new BigDecimal("0");
 		}else if(new BigDecimal(taxPoint).compareTo(new BigDecimal(upTax)) == 1) {
 			return new BigDecimal("0");
-		}else if (new BigDecimal(upTax).subtract(new BigDecimal(taxPoint)).compareTo(new BigDecimal("4".equals(pos_type) ? properties.getDqtax() : properties.getTax())) == 1) {
+		}else if (new BigDecimal(upTax).subtract(new BigDecimal(taxPoint)).compareTo(new BigDecimal("4".equals(pos_type) ? config.getDqtax() : config.getTax())) == 1) {
 			return new BigDecimal("0");
 		}else {
 			return new BigDecimal(money).multiply(new BigDecimal(upTax).subtract(new BigDecimal(taxPoint))).setScale(2, BigDecimal.ROUND_HALF_UP);

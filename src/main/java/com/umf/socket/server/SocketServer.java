@@ -1,11 +1,11 @@
-package com.umf.socket;
+package com.umf.socket.server;
 
 
-import com.umf.config.Properties;
-import com.umf.dao.DBDao;
+import com.umf.config.Config;
 import com.umf.service.mianservice.TradingService;
+import com.umf.socket.base.BaseIO;
 import com.umf.utils.LoFunction;
-import lombok.extern.slf4j.Slf4j;
+import com.umf.utils.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,14 +13,13 @@ import java.io.*;
 import java.net.Socket;
 
 @Component
-@Slf4j
 public class SocketServer extends BaseIO {
 
     @Autowired
-    private Properties properties;
+    private LogUtil log;
 
     @Autowired
-    DBDao dbDao;
+    private Config config;
 
     @Autowired
     TradingService ts;
@@ -36,7 +35,7 @@ public class SocketServer extends BaseIO {
                         input = socket.getInputStream();
                         output = socket.getOutputStream();
                         String ip = socket.getInetAddress().toString();
-                        socket.setSoTimeout(properties.getTimeOut());
+                        socket.setSoTimeout(config.getTimeOut());
                         byte[] lenByte = new byte[2];
                         input.read(lenByte, 0, 2);// 读取长度
                         int len = (int) loFunction.byteArrayToShort(lenByte);
@@ -65,8 +64,8 @@ public class SocketServer extends BaseIO {
                             ts.mainService();
 //                        }
                     } catch (Exception e) {
-                        System.out.println(e.getMessage());
-//                        log.errinfoS(e);
+                        e.printStackTrace();
+                        log.errorS(e);
                     }finally {
                         closeIO(socket, input, output);
                     }

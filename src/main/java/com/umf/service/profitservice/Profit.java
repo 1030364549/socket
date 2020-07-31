@@ -1,8 +1,11 @@
 package com.umf.service.profitservice;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Map;
 
 @SuppressWarnings("all")
+@Component
 public interface Profit {
 	
 	/**

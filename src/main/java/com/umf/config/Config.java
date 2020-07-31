@@ -13,11 +13,15 @@ import org.springframework.stereotype.Component;
 @Configuration
 @PropertySource("classpath:application.yml")
 @ConfigurationProperties(prefix = "config")
-public class Properties {
+public class Config {
     private Integer port;
     private Integer threadPool;
     private Integer timeOut;
     private String tax;
     private String dqtax;
     private String[] ip;
+    private String app_key;
+    private String master_secret;
+    private String app_keyios;
+    private String master_secretios;
 }

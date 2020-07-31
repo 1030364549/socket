@@ -1,4 +1,8 @@
-package com.umf.socket;
+package com.umf.socket.base;
+
+import com.umf.utils.LogUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +15,11 @@ import java.net.Socket;
  * @Date:2020/7/8 18:09
  * @Description:
  */
+@Component
 public class BaseIO {
+
+    @Autowired
+    private LogUtil log;
 
     /**
      *
@@ -35,7 +43,8 @@ public class BaseIO {
                 socket.close();
             }
         } catch (IOException e) {
-//            log.errinfoS(e);
+            e.printStackTrace();
+            log.errorS(e);
         }
     }
 
@@ -58,7 +67,8 @@ public class BaseIO {
                 socket.close();
             }
         } catch (IOException e) {
-//            log.errinfoS(e);
+            e.printStackTrace();
+            log.errorS(e);
         }
     }
 }

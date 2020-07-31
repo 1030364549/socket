@@ -29,6 +29,7 @@
 			<artifactId>ojdbc8</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
 		<!-- 自定义的元数据依赖-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -61,16 +62,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<version>2.4</version>
-			<classifier>jdk15</classifier>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-			<exclusions><!-- 去掉springboot默认配置 -->
+			<exclusions><!-- 去掉springboot默认配置的logging日志配置 -->
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-logging</artifactId>
@@ -111,6 +105,25 @@
 			<groupId>cn.easyproject</groupId>
 			<artifactId>orai18n</artifactId>
 			<version>12.1.0.2.0</version>
+		</dependency>
+
+		<!-- CollectionUtils(集合工具类) -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+
+		<!-- 极光推送 -->
+		<dependency>
+			<groupId>cn.jpush.api</groupId>
+			<artifactId>jpush-client</artifactId>
+			<version>3.4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.jpush.api</groupId>
+			<artifactId>jiguang-common</artifactId>
+			<version>1.1.7</version>
 		</dependency>
 
 	</dependencies>

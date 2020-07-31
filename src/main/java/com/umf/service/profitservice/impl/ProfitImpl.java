@@ -2,23 +2,29 @@ package com.umf.service.profitservice.impl;
 
 import com.umf.service.profitservice.Profit;
 import com.umf.utils.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.*;
 
 @SuppressWarnings("all")
+@Component
 public class ProfitImpl implements Profit {
 	
 	private LoFunction lo = new LoFunction();
 	private EncryUtil eu = new EncryUtil();
 	private Utils ut = new Utils();
-	private LogUtil log = new LogUtil();
+	@Autowired
+	private LogUtil log;
 
 	@Override
 	public void posReqMap(Map<String, String> posReqMap) throws Exception {
 		mapToParam(posReqMap,new RunningData());
-//		log.saveMaplog(posReqMap.toString());
+		System.out.println("posReqMap"+posReqMap);
+		System.out.println("log"+log);
+		log.info(posReqMap.toString());
 	}
 
 	// 给对象的变量赋值
