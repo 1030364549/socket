@@ -61,7 +61,8 @@ public class SocketServer extends BaseIO {
 //                        if((RunningData.getLocaldate() !=null && !"".equals(RunningData.getLocaldate())) || loFunction.isXw()){
 //                            ts.mainServiceXw();
 //                        }else{
-                            ts.mainService();
+                            ts.excel();
+//                            ts.mainService();
 //                        }
                     } catch (Exception e) {
                         e.printStackTrace();

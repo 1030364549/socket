@@ -191,8 +191,19 @@
     </select>
 
 
-    <select id="select1" resultType="map" parameterType="map">
-        select * from agent_info where agent_name = #{agent_name} and agent_num = #{agent_num}
+    <select id="selAgNat1" parameterType="string" resultType="string">
+        select agent_nature from agent_info where agent_num in (select agent_num from formal_pos where posno = #{posno})
+    </select>
+    <select id="select1" parameterType="map" resultType="map">
+        select * from agent_info where
+             agent_name = #{agent_name}
+            <if test="agent_num!=null and agent_num!=''">
+                and agent_num = #{agent_num}
+            </if>
+            <foreach collection="num" item="value" index="key" separator=" ">
+                and ${key} = #{value}
+            </foreach>
+
     </select>
     <insert id="insert1">
         insert into pos_activation_card (pan,status,adddate,addtime) values(#{pan},'','','')
@@ -203,5 +214,16 @@
     <delete id="delete1">
         delete pos_activation_card where pan = #{pan}
     </delete>
+
+    <select id="s" parameterType="map" resultType="map">
+        select * from merchant_model where modelname like '%'||'${modelname}'||'%'
+    </select>
+
+    <select id="getPageListStatistics21" resultType="java.util.LinkedHashMap">
+         SELECT T2.* FROM(SELECT PD.*,ROWNUM RN FROM (
+             select * from formal_pos
+         ) PD WHERE ROWNUM <![CDATA[<]]> 101 ) T2 WHERE T2.RN <![CDATA[>=]]> 1
+    </select>
+
 </mapper>
 

@@ -18,7 +18,7 @@ public class NewUtils {
      * 以代理商编号为key,数据为val
      *
      * @date 2020/7/30 11:23
-     * @param [selPoldata]
+     * @param selPoldata
      * @return java.util.Map<java.lang.String,java.util.Map<java.lang.String,java.lang.String>>
      */
     public static Map<String, Map<String,String>> selPoldata(List<Map<String,String>> selPoldata){
@@ -33,7 +33,8 @@ public class NewUtils {
      * 参数校验
      *
      * @date 2020/7/30 11:23
-     * @param [auMap, agMap]
+     * @param auMap
+     * @param agMap
      * @return void
      */
     public static void paramHand(Map<String, String> auMap, Map<String, String> agMap) throws Exception {
@@ -66,7 +67,7 @@ public class NewUtils {
      * 变量名小写,变量值类型转换
      *
      * @date 2020/7/30 11:25
-     * @param [t]
+     * @param t
      * @return java.lang.Object
      */
     public static <T> Object objToStr(T t){
@@ -95,7 +96,7 @@ public class NewUtils {
      * 添加到集合中
      *
      * @date 2020/7/30 11:25
-     * @param [objects]
+     * @param objects
      * @return java.util.Map<java.lang.String,java.lang.Object>
      */
     public static Map<String,Object> add(Object... objects){
@@ -108,10 +109,11 @@ public class NewUtils {
     }
 
     /**
-     * 判断集合泛型类型
+     * 判断集合泛型类型，查询第一个不为空的数据判断类型且返回
      *
      * @date 2020/7/30 14:09
-     * @param [list, clazz]
+     * @param list
+     * @param clazz
      * @return boolean
      */
     public static boolean judgeType(List list, Class clazz) throws IllegalAccessException, InstantiationException {

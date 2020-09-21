@@ -183,17 +183,19 @@ public class DateUtil {
     }
 
     /**
-     * 两个日期相隔的天数，date2比date1多的天数
+     * 两个日期相隔的天数,date2比date1多的天数,不精确到时分秒
      *
+     * @date 2020/8/18 15:20
      * @param dateStr1
      * @param dateStr2
-     * @return
+     * @return java.lang.Integer  相差天数
      */
-    public static Integer diffDays(String dateStr1, String dateStr2) {
-        Date date1 = StringToDate(dateStr1, "yyyy-MM-dd HH:mm:ss");
+    public static Integer diffDays(String dateStr1, String dateStr2) throws ParseException {
+
+        Date date1 = StringToDate(dateStr1, "yyyy-MM-dd");
         Date date2 = new Date();
         if(dateStr2 != null && !"".equals(dateStr2)){
-            date2 = StringToDate(dateStr2, "yyyy-MM-dd HH:mm:ss");
+            date2 = StringToDate(dateStr2, "yyyy-MM-dd");
         }
         Calendar cal1 = Calendar.getInstance();
         cal1.setTime(date1);
@@ -220,38 +222,32 @@ public class DateUtil {
     }
 
     /**
-     * 通过时间秒毫秒数判断两个时间的间隔
+     * 通过时分秒判断两个时间的间隔，舍弃小数
      *
+     * @date 2020/8/18 15:20
      * @param dateStr1
      * @param dateStr2
-     * @return
+     * @return java.lang.Integer 相差天数
      */
-    public static int diffDaysByMill(String dateStr1,String dateStr2) {
+    public static Integer diffDaysByMill(String dateStr1,String dateStr2) throws ParseException {
         Date date1 = StringToDate(dateStr1, "yyyy-MM-dd HH:mm:ss");
         Date date2 = new Date();
         if(dateStr2 != null && !"".equals(dateStr2)){
             date2 = StringToDate(dateStr2, "yyyy-MM-dd HH:mm:ss");
         }
-        int days = (int) ((date2.getTime() - date1.getTime()) / (1000*3600*24));
-        return days;
+        return (int) ((date2.getTime() - date1.getTime()) / (1000*3600*24));
     }
 
     /**
      * 字符串转换到日期格式
      *
+     * @date 2020/8/18 15:21
      * @param dateStr 需要转换的字符串
      * @param formatStr 需要格式的目标字符串  举例 yyyyMMdd
-     * @return Date 返回转换后的时间
-     * @throws ParseException 转换异常
+     * @return java.util.Date 返回转换后的时间
      */
-    public static Date StringToDate(String dateStr,String formatStr){
+    public static Date StringToDate(String dateStr,String formatStr) throws ParseException {
         DateFormat sdf=new SimpleDateFormat(formatStr);
-        Date date=null;
-        try {
-            date = new Date(sdf.parse(dateStr).getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
+        return new Date(sdf.parse(dateStr).getTime());
     }
 }

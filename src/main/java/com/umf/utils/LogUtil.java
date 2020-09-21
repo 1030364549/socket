@@ -30,6 +30,16 @@ public class LogUtil {
         log.info(msg.toString());
     }
 
+    public void infoSql(String id, Object parameter, String sql) throws Exception {
+        msg=new StringBuffer();
+        msg.append("************************************************************").append(newLine);
+        msg.append("【系统时间】:").append(du.getCurrentDateTime("yyyy-MM-dd HH:mm:ss")).append(newLine);
+        msg.append("【请求方法】:").append(id).append(newLine);
+        msg.append("【查询参数】:").append(parameter).append(newLine);
+        msg.append("【执行语句】:").append(sql).append(newLine);
+        log.info(msg.toString());
+    }
+
     public void errorE(Exception e) {
         try {
             msg = new StringBuffer();

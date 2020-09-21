@@ -22,8 +22,6 @@ public class ProfitImpl implements Profit {
 	@Override
 	public void posReqMap(Map<String, String> posReqMap) throws Exception {
 		mapToParam(posReqMap,new RunningData());
-		System.out.println("posReqMap"+posReqMap);
-		System.out.println("log"+log);
 		log.info(posReqMap.toString());
 	}
 

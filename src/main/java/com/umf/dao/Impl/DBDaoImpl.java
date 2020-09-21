@@ -6,6 +6,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +34,19 @@ public class DBDaoImpl extends SqlSessionDaoSupport implements DBDao {
      */
     @Override
     public List<Map<String, String>> getList(String id, Object params) {
+//        return (List<Map<String, String>>) NewUtils.objToStr(this.getSqlSession().selectList(id,params));
+        return this.getSqlSession().selectList(id,params);
+    }
+
+    /**
+     * ************************************
+     * 查询集合（多行）
+     * @param id : mapper id
+     * @param params : 参数
+     * ************************************
+     */
+    @Override
+    public List getObjectList(String id, Object params) {
 //        return (List<Map<String, String>>) NewUtils.objToStr(this.getSqlSession().selectList(id,params));
         return this.getSqlSession().selectList(id,params);
     }

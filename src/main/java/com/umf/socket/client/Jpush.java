@@ -31,19 +31,19 @@ public class Jpush {
 	@Autowired
 	private Config config;
 
-	// ¼«¹âÍÆËÍ>>Android
-	// Map<String, String> parmÊÇÎÒ×Ô¼º´«¹ıÀ´µÄ²ÎÊı,Í¬Ñ§ÃÇ¿ÉÒÔ×Ô¶¨Òå²ÎÊı
+	// æå…‰æ¨é€>>Android
+	// Map<String, String> parmæ˜¯æˆ‘è‡ªå·±ä¼ è¿‡æ¥çš„å‚æ•°,åŒå­¦ä»¬å¯ä»¥è‡ªå®šä¹‰å‚æ•°
 	public void jpushAndroid(Map<String, String> parm) {
-		// ´´½¨JPushClient(¼«¹âÍÆËÍµÄÊµÀı)
+		// åˆ›å»ºJPushClient(æå…‰æ¨é€çš„å®ä¾‹)
 		JPushClient jpushClient = new JPushClient(config.getMaster_secret(), config.getApp_key());
-		// ÍÆËÍµÄ¹Ø¼ü,¹¹ÔìÒ»¸öpayload
-		PushPayload payload = PushPayload.newBuilder().setPlatform(Platform.android())// Ö¸¶¨androidÆ½Ì¨µÄÓÃ»§
-				.setAudience(Audience.alias(parm.get("agentNum")))// registrationIdÖ¸¶¨ÓÃ»§
-				.setNotification(Notification.android("µã»÷·µ»ØÓ¦ÓÃ", parm.get("message"), parm))
-				// ·¢ËÍÄÚÈİ
+		// æ¨é€çš„å…³é”®,æ„é€ ä¸€ä¸ªpayload
+		PushPayload payload = PushPayload.newBuilder().setPlatform(Platform.android())// æŒ‡å®šandroidå¹³å°çš„ç”¨æˆ·
+				.setAudience(Audience.alias(parm.get("agentNum")))// registrationIdæŒ‡å®šç”¨æˆ·
+				.setNotification(Notification.android("ç‚¹å‡»è¿”å›åº”ç”¨", parm.get("message"), parm))
+				// å‘é€å†…å®¹
 				.setOptions(Options.newBuilder().setApnsProduction(false).build())
-				// ÕâÀïÊÇÖ¸¶¨¿ª·¢»·¾³,²»ÓÃÉèÖÃÒ²Ã»¹ØÏµ
-				.setMessage(Message.content(parm.get("message")))// ×Ô¶¨ÒåĞÅÏ¢
+				// è¿™é‡Œæ˜¯æŒ‡å®šå¼€å‘ç¯å¢ƒ,ä¸ç”¨è®¾ç½®ä¹Ÿæ²¡å…³ç³»
+				.setMessage(Message.content(parm.get("message")))// è‡ªå®šä¹‰ä¿¡æ¯
 				.build();
 
 		try {
@@ -58,17 +58,17 @@ public class Jpush {
 	}
 
 	public void jpushIOS(Map<String, String> parm) {
-		// ´´½¨JPushClient
+		// åˆ›å»ºJPushClient
 		JPushClient jpushClient = new JPushClient(config.getMaster_secretios(), config.getApp_keyios());
-		PushPayload payload = PushPayload.newBuilder().setPlatform(Platform.ios())// iosÆ½Ì¨µÄÓÃ»§
-				.setAudience(Audience.alias(parm.get("agentNum")))// registrationIdÖ¸¶¨ÓÃ»§
+		PushPayload payload = PushPayload.newBuilder().setPlatform(Platform.ios())// ioså¹³å°çš„ç”¨æˆ·
+				.setAudience(Audience.alias(parm.get("agentNum")))// registrationIdæŒ‡å®šç”¨æˆ·
 				.setNotification(Notification.newBuilder()
 						.addPlatformNotification(IosNotification.newBuilder().setAlert(parm.get("message")).setBadge(+1)
-								.setSound("happy")// ÕâÀïÊÇÉèÖÃÌáÊ¾Òô(¸ü¶à¿ÉÒÔÈ¥¹ÙÍø¿´¿´)
+								.setSound("happy")// è¿™é‡Œæ˜¯è®¾ç½®æç¤ºéŸ³(æ›´å¤šå¯ä»¥å»å®˜ç½‘çœ‹çœ‹)
 								.addExtras(parm).build())
 						.build())
 				.setOptions(Options.newBuilder().setApnsProduction(true).build())
-				.setMessage(Message.newBuilder().setMsgContent(parm.get("message")).addExtras(parm).build())// ×Ô¶¨ÒåĞÅÏ¢
+				.setMessage(Message.newBuilder().setMsgContent(parm.get("message")).addExtras(parm).build())// è‡ªå®šä¹‰ä¿¡æ¯
 				.build();
 		try {
 			jpushClient.sendPush(payload);
@@ -82,23 +82,23 @@ public class Jpush {
 	}
 
 	public int jpushAll(Map<String, String> parm) {
-		// ´´½¨JPushClient
+		// åˆ›å»ºJPushClient
 		JPushClient jpushClient = new JPushClient(config.getMaster_secret(), config.getApp_key());
-		// ´´½¨option
-		PushPayload payload = PushPayload.newBuilder().setPlatform(Platform.all()) // ËùÓĞÆ½Ì¨µÄÓÃ»§
-				.setAudience(Audience.alias(parm.get("agentNum")))// registrationIdÖ¸¶¨ÓÃ»§
-				.setNotification(Notification.newBuilder().addPlatformNotification(IosNotification.newBuilder() // ·¢ËÍios
-						.setAlert(parm.get("message")) // ÏûÏ¢Ìå
-						.setBadge(+1).setSound("happy") // iosÌáÊ¾Òô
-						.addExtras(parm) // ¸½¼Ó²ÎÊı
-						.build()).addPlatformNotification(AndroidNotification.newBuilder() // ·¢ËÍandroid
-								.addExtras(parm) // ¸½¼Ó²ÎÊı
-								.setAlert(parm.get("message")) // ÏûÏ¢Ìå
+		// åˆ›å»ºoption
+		PushPayload payload = PushPayload.newBuilder().setPlatform(Platform.all()) // æ‰€æœ‰å¹³å°çš„ç”¨æˆ·
+				.setAudience(Audience.alias(parm.get("agentNum")))// registrationIdæŒ‡å®šç”¨æˆ·
+				.setNotification(Notification.newBuilder().addPlatformNotification(IosNotification.newBuilder() // å‘é€ios
+						.setAlert(parm.get("message")) // æ¶ˆæ¯ä½“
+						.setBadge(+1).setSound("happy") // iosæç¤ºéŸ³
+						.addExtras(parm) // é™„åŠ å‚æ•°
+						.build()).addPlatformNotification(AndroidNotification.newBuilder() // å‘é€android
+								.addExtras(parm) // é™„åŠ å‚æ•°
+								.setAlert(parm.get("message")) // æ¶ˆæ¯ä½“
 								.build())
 						.build())
-				.setOptions(Options.newBuilder().setApnsProduction(true).build())// Ö¸¶¨¿ª·¢»·¾³ trueÎªÉú²úÄ£Ê½ false Îª²âÊÔÄ£Ê½
-																					// (android²»Çø·ÖÄ£Ê½,iosÇø·ÖÄ£Ê½)
-				.setMessage(Message.newBuilder().setMsgContent(parm.get("message")).addExtras(parm).build())// ×Ô¶¨ÒåĞÅÏ¢
+				.setOptions(Options.newBuilder().setApnsProduction(true).build())// æŒ‡å®šå¼€å‘ç¯å¢ƒ trueä¸ºç”Ÿäº§æ¨¡å¼ false ä¸ºæµ‹è¯•æ¨¡å¼
+																					// (androidä¸åŒºåˆ†æ¨¡å¼,iosåŒºåˆ†æ¨¡å¼)
+				.setMessage(Message.newBuilder().setMsgContent(parm.get("message")).addExtras(parm).build())// è‡ªå®šä¹‰ä¿¡æ¯
 				.build();
 		try {
 			jpushClient.sendPush(payload);
@@ -117,7 +117,7 @@ public class Jpush {
 		Map map = new HashMap();
 		map.put("agentNum", agent_num);
 		map.put("message",
-				"×ğ¾´µÄºÏ×÷»ï°é,ÓÚ" + du.getCurrentDateTime("yyyy-MM-dd HH:mm:ss") + " ²úÉú·ÖÈó£º" + level_tax_profit + "Ôª¡£");
+				"å°Šæ•¬çš„åˆä½œä¼™ä¼´,äº" + du.getCurrentDateTime("yyyy-MM-dd HH:mm:ss") + " äº§ç”Ÿåˆ†æ¶¦ï¼š" + level_tax_profit + "å…ƒã€‚");
 //		jpushIOS(map);
 		jpushAll(map);
 	}

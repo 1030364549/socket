@@ -1,13 +1,16 @@
 package com.umf.utils;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 
+import cn.jiguang.common.utils.StringUtils;
+import io.netty.util.internal.StringUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.mapping.*;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.reflection.MetaObject;
@@ -16,18 +19,22 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
+
+//@Component
+//@DependsOn({"springUtil"})    /*需要依赖的spring类*/
 @SuppressWarnings("all")
 @Intercepts({ @Signature(type = Executor.class, method = "query",
-        args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }) })
+                         args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }) })
 public class MapperInterceptor implements Interceptor {
 
-    @Autowired
-    public LogUtil log;
+//    @Autowired
+    public LogUtil log = new LogUtil();/*= SpringUtil.getBean(LogUtil.class);*/
 
-    private String newLine = System.getProperty("line.separator");
-
-    public Object intercept(Invocation invocation) throws InstantiationException, IllegalAccessException {
+    public Object intercept(Invocation invocation) throws Exception {
         /** 打印sql语句 */
         MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
         Object parameter = invocation.getArgs()[1];
@@ -38,22 +45,19 @@ public class MapperInterceptor implements Interceptor {
         Configuration configuration = mappedStatement.getConfiguration();
         // 最终的sql语句
         String newsql = showSql(configuration, boundSql);
-        StringBuilder sb = new StringBuilder("=======================================================================================================================================================").append(newLine)
-                .append(mappedStatement.getId()).append(" : ").append(newLine)
-                .append(parameter).append(newLine)
-                .append(newsql).append(newLine)
-                .append("=======================================================================================================================================================");
-        System.out.println(sb);
+        System.out.println(log);
+        log.infoSql(mappedStatement.getId(),parameter,newsql);
+
         /** 变量名小写,变量值类型转换 */
         Object result = null;
         try {
             result = invocation.proceed();
-            // 获取类型
+            // 获取mapper标签的resultType，返现类型
             List<ResultMap> rms = mappedStatement.getResultMaps();
-            ResultMap rm = rms != null && rms.size() > 0 ? rms.get(0) : null;
-            Class<?> type = rm != null ? rm.getType() : null;
+            ResultMap rm = CollectionUtils.isEmpty(rms) ? null : rms.get(0);
+            Class<?> type = rm == null ? null : rm.getType();
 //            String typeName = rm != null && rm.getType() != null ? rm.getType().getSimpleName() : "";   // 简称
-            // 校验并修改结果集
+            // 判断返现类型是否为map，根据结果集类型修改（否则即使查询结果为字符串整数，结果集仍然为list集合）
             if(result != null && !"".equals(result)){
                 if(type == Map.class){
                     if(result instanceof List){
@@ -81,7 +85,6 @@ public class MapperInterceptor implements Interceptor {
             e.printStackTrace();
             log.errorE(e);
         }
-
         return result;
     }
 
@@ -96,25 +99,24 @@ public class MapperInterceptor implements Interceptor {
     /**
      * 进行 ? 的替换
      *
-     * @date 2020/7/30 11:26
-     * @param [configuration, boundSql]
+     * @date 2020/8/18 15:21
+     * @param configuration
+     * @param boundSql
      * @return java.lang.String
      */
     public String showSql(Configuration configuration, BoundSql boundSql) {
-        // 获取参数
-        Object parameterObject = boundSql.getParameterObject();
-        List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
+        Object parameterObject = boundSql.getParameterObject();                     // 实际参数
+        List<ParameterMapping> parameterMappings = boundSql.getParameterMappings(); // 所需参数
         // sql语句中多个空格都用一个空格代替
         String sql = boundSql.getSql().replaceAll("[\\s]+", " ");
-        if (CollectionUtils.isNotEmpty(parameterMappings) && parameterObject != null) {
-            // 获取类型处理器注册器，类型处理器的功能是进行java类型和数据库类型的转换　　　　　　　
-            // 如果根据parameterObject.getClass()可以找到对应的类型，则替换
+        if (!CollectionUtils.isEmpty(parameterMappings) && !ObjectUtils.isEmpty(parameterObject)) {
+            // 获取类型处理器注册器，类型处理器的功能是进行java类型和数据库类型的转换
+            // 判断当前参数是否为一个简单类型或是一个注册了typeHandler、可根据getClass()找到对应对象类型的参数，直接替换占位符
             TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
             if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {
                 sql = sql.replaceFirst("\\?", Matcher.quoteReplacement(getParameterValue(parameterObject)));
             } else {
-                // MetaObject主要是封装了originalObject对象，
-                // 提供了get和set的方法用于获取和设置originalObject的属性值,
+                // MetaObject主要是封装了originalObject对象，提供了get和set的方法用于获取和设置originalObject的属性值,
                 // 主要支持对JavaBean、Collection、Map三种类型对象的操作
                 MetaObject metaObject = configuration.newMetaObject(parameterObject);
                 for (ParameterMapping parameterMapping : parameterMappings) {
@@ -123,7 +125,7 @@ public class MapperInterceptor implements Interceptor {
                         Object obj = metaObject.getValue(propertyName);
                         sql = sql.replaceFirst("\\?", Matcher.quoteReplacement(getParameterValue(obj)));
                     } else if (boundSql.hasAdditionalParameter(propertyName)) {
-                        // 该分支是动态sql
+                        // 该分支是动态sql，foreach会生成额外动态参数需要特殊取值
                         Object obj = boundSql.getAdditionalParameter(propertyName);
                         sql = sql.replaceFirst("\\?", Matcher.quoteReplacement(getParameterValue(obj)));
                     } else {
@@ -139,26 +141,55 @@ public class MapperInterceptor implements Interceptor {
     /**
      * String类型添加单引号，日期类型则转换为时间格式并加单引号；对参数是否为null的情况做处理
      *
-     * @date 2020/7/30 11:36
-     * @param [obj]
+     * @date 2020/8/18 15:22
+     * @param obj
      * @return java.lang.String
      */
     private String getParameterValue(Object obj) {
-        String value = null;
-        if (obj instanceof String) {
-            value = "'" + obj.toString() + "'";
-        } else if (obj instanceof Date) {
-            DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.CHINA);
-            value = "'" + formatter.format(new Date()) + "'";
-        } else {
-            if (obj != null) {
-                value = obj.toString();
-            } else {
-                value = "";
-            }
+//        String value = null;
+//        if (obj instanceof String) {
+//            value = "'" + obj.toString() + "'";
+//        } else if (obj instanceof Date) {
+//            DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.CHINA);
+//            value = "'" + formatter.format(obj) + "'";
+//        } else {
+//            if (obj != null) {
+//                value = obj.toString();
+//            } else {
+//                value = "";
+//            }
+//        }
+        return ObjectUtils.isEmpty(obj) ? "''" : "'" + obj.toString() + "'";
+    }
 
+
+    /**
+     * 获取实体类存在值的变量
+     *
+     * @date 2020/9/1 16:44
+     * @param parameter
+     * @return java.lang.String
+     */
+    public String splicingVal(Object parameter) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        StringBuilder sb = new StringBuilder();
+        Class clazz = parameter.getClass();
+        Class superclazz = clazz.getSuperclass();
+        Class[] clazzs = {clazz,superclazz};
+        for(Class cla : clazzs){
+            if(cla != null){
+                Field[] fields = cla.getDeclaredFields();
+                for(Field field : fields){
+                    String name = field.getName();
+                    Method method = clazz.getMethod("get" + name.substring(0, 1).toUpperCase() + name.substring(1));
+                    Object value = method.invoke(parameter);
+                    if(value != null){
+                        sb.append(name).append(" = \"").append(value).append("\"").append(",");
+                    }
+                }
+            }
         }
-        return value;
+        sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
     }
 
 }

@@ -1,5 +1,6 @@
 package com.umf.Test;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.umf.utils.NewUtils;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class Test2 {
         list.add(3);
 //        list.add(2);
         try {
-            System.out.println(NewUtils.judgeType(list,String.class));
+            System.out.println(NewUtils.judgeType(list,Boolean.class));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {

@@ -3,6 +3,7 @@ package com.umf.dao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,8 @@ import java.util.Map;
 public interface DBDao {
 
     List<Map<String,String>> getList(String id, Object params);
+
+    public List getObjectList(String id, Object params);
 
     Map<String, String> getMap(String id, Object params);
 

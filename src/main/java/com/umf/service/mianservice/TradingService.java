@@ -1,5 +1,6 @@
 package com.umf.service.mianservice;
 
+import com.alibaba.excel.metadata.Sheet;
 import com.umf.config.Config;
 import com.umf.dao.Impl.DBDaoImpl;
 import com.umf.socket.client.Jpush;
@@ -55,26 +56,125 @@ public class TradingService {
         }
     }
 
+    public void excel(){
+
+        /*路径*/
+        String filePath = "E:\\自定义导入数据.xlsx";
+        /*表头*/
+//        LinkedHashMap<String,String> head = new LinkedHashMap(){{
+//            put("CREATEMAN","添加人");
+//            put("POSNO","终端编号[本地]");
+//        }};
+//        LinkedHashMap<String,String> head1 = new LinkedHashMap(){{
+//            put("CREATEMAN","添加人");
+//            put("POSNO","终端编号[本地]");
+//            put("kkk","嘤嘤嘤");
+//        }};
+
+//        String[] head = {"添加人","终端编号[本地]"};
+//        String[] head1 = {"添加人","终端编号[本地]","hhhhh"};
+
+//        List<List<String>> head = new ArrayList(){{
+//            add(Arrays.asList("添加人","（姓名）"));
+//            add(Arrays.asList("终端编号[本地]","（编号）"));
+//        }};
+
+//        List<List<String>> head1 = new ArrayList(){{
+//            add(Arrays.asList("添加人","CREATEMAN"));
+//            add(Arrays.asList("终端编号[本地]","POSNO"));
+//        }};
+
+        /*填写数据的表头*/
+        List<List<String>> head = new ArrayList(){{
+            add(Arrays.asList("主键"));
+            add(Arrays.asList("终端编号[本地]"));
+            add(Arrays.asList("终端类型"));
+            add(Arrays.asList("商户编号"));
+            add(Arrays.asList("业务员编号"));
+            add(Arrays.asList("代理商编号"));
+            add(Arrays.asList("销售员编号"));
+            add(Arrays.asList("所属营业部"));
+            add(Arrays.asList("终端状态"));
+            add(Arrays.asList("添加人"));
+            add(Arrays.asList("添加时间"));
+            add(Arrays.asList("备注"));
+            add(Arrays.asList("0 未删除（可见） 1 删除 （不可见）"));
+            add(Arrays.asList("绑定类型  1 首次绑定 2 增机"));
+            add(Arrays.asList("机器号"));
+            add(Arrays.asList("终端绑定查询接口  是否返回 0-是  1-否"));
+        }};
+
+//        LinkedHashMap<String,String> head = new LinkedHashMap(){{
+//            put("ID","主键");
+//            put("POSNO","终端编号[本地]");
+//            put("POS_TYPE","终端类型（0：传统终端  1：MPOS  2：智能终端 3：机构终端）");
+//            put("MERNO","商户编号");
+//            put("SM_NUM","业务员编号");
+//            put("AGENT_NUM","代理商编号");
+//            put("SALE_NUM","销售员编号");
+//            put("SO_NUM","所属营业部");
+//            put("STATUS","终端状态 0：启用 1：关停 2：绑定未开通");
+//            put("CREATEMAN","添加人");
+//            put("CREATEDATE","添加时间");
+//            put("NOTE","备注");
+//            put("ISDETELE","0 未删除（可见） 1 删除 （不可见）");
+//            put("BIND_TYPE","绑定类型  1 首次绑定 2 增机");
+//            put("MACHINE_NUM","机器号");
+//            put("IS_B001","终端绑定查询接口  是否返回 0-是  1-否");
+//        }};
+
+//        List<List<Object>> data = new ArrayList(){{
+//            add(Arrays.asList("哈哈哈","1"));
+//            add(Arrays.asList("嘎嘎嘎","2"));
+//            add(Arrays.asList("嘤嘤嘤","3"));
+//        }};
+//        List<List<Object>> data1 = new ArrayList(){{
+//            add(Arrays.asList("快快快","1"));
+//            add(Arrays.asList("来来来","2"));
+//            add(Arrays.asList("急急急","3"));
+//        }};
+
+        /*设置每页的长度*/
+//        page.setPageSize(299);
+        /*设置页数*/
+//        page.setPageNo(1);
+        /*执行sql获取数据*/
+//        incrementLogDao.getPageList(statment,page);
+
+        /*自定义的sheet页*/
+        Sheet initSheet = new Sheet(1, 0);
+        initSheet.setSheetName("POS终端信息表");
+        /*自适应宽度*/
+        initSheet.setAutoWidth(Boolean.TRUE);
+
+        String fileName = "嘤嘤嘤";
+        /*导入报表*/
+//        ExcelUtil1 excelUtil1 = new ExcelUtil1(filePath,head,initSheet);
+        ExcelUtil excelUtil1 = new ExcelUtil(filePath,head,initSheet);
+//        excelUtil1.excelList(data);
+
+//        excelUtil1.excelMap(incrementLogDao.getObjectList("getPageListStatistics2"));
+
+//        excelUtil1.excelLinked(page.getResults());
+
+//        excelUtil1.setHead(head1,"土皮之力");
+
+//        excelUtil1.excelList(data1);
+//        excelUtil1.excelMap(incrementLogDao.getObjectList("getPageListStatistics3"));
+
+//        excelUtil1.excelLinked(incrementLogDao.getObjectList("getPageListStatistics1"));
+
+//        excelUtil1.excelMap(page.getResults());
+//        excelUtil1.excelMap(incrementLogDao.getObjectList("getPageListStatistics1"));
+        excelUtil1.excelLinked(dbdao.getObjectList("getPageListStatistics21",null));
+//        for(int i=21;i<=40;i++){
+//            excelUtil1.excelLinked(incrementLogDao.getObjectList("getPageListStatistics"+i));
+//        }
+        excelUtil1.close();
+    }
+
     public void mainService() throws Exception {
         try {
-
-//			/** IP校验 */
-//			if(!checkIp()) {
-//				System.out.println("上送IP地址异常......");
-//				return;
-//			}
-
-            /** 不是小微商户时 , 校验mac */
-            if(!lo.isXw() && !checkMak()){
-                System.out.println("Mak校验异常......");
-                return;
-            }
-
-            /** 校验是否渠道  */
-            if("2".equals(dbdao.getString("selAgNat",posReqMap))) {
-                isChannel = "1";   // 是否是渠道 0-否 1-是
-            }
-            System.out.println("是否是渠道 0-否 1-是："+isChannel);
 
 //            List<Map<String, String>> list = dbdao.getList("select1",NewUtils.add("agent_num","100109396","agent_name","乔崇飞测试"));
 //            System.out.println(list.size());
@@ -83,9 +183,17 @@ public class TradingService {
 //                System.out.println("----------------------------------------------------------------------------------");
 //            });
 
-            Map<String, String> map = dbdao.getMap("select1", NewUtils.add("agent_num","100109396","agent_name","乔崇飞测试"));
-            map.forEach((k,v) -> System.out.println(k+"="+v));
-            log.errorE(new Exception());
+            // '${}'
+            List<Map<String, String>> list = dbdao.getList("s", new HashMap() {{
+                put("modelname", "签A版");
+            }});
+            list.forEach(System.out::print);
+           /* String selAgNat1 = dbdao.getString("selAgNat1", posReqMap.get("posno"));
+            System.out.println("selAgNat1 = "+selAgNat1);
+            Map<String, String> map = dbdao.getMap("select1",
+                    NewUtils.add("agent_num","100109396", "agent_name","乔崇飞测试","num",new HashMap(){{put("1",1);put("2",2);}}));
+            System.out.println(map);*/
+//            log.errorE(new Exception());
 
 
 //            int insert1 = dbdao.insert("insert1", "1");
@@ -98,6 +206,24 @@ public class TradingService {
 //            System.out.println(delete1);
 
 
+//			/** IP校验 */
+//			if(!checkIp()) {
+//				System.out.println("上送IP地址异常......");
+//				return;
+//			}
+
+//            /** 不是小微商户时 , 校验mac */
+//            if(!lo.isXw() && !checkMak()){
+//                System.out.println("Mak校验异常......");
+//                return;
+//            }
+//
+//            /** 校验是否渠道  */
+//            if("2".equals(dbdao.getString("selAgNat",posReqMap))) {
+//                isChannel = "1";   // 是否是渠道 0-否 1-是
+//            }
+//            System.out.println("是否是渠道 0-否 1-是："+isChannel);
+
             /** 反射到方法 */
 //            getClass().getMethod("deal_0" + isChannel, new Class[] {}).invoke(this);
         } catch (Exception e) {
@@ -107,17 +233,13 @@ public class TradingService {
     }
 
     /**
+     * 非渠道分润
      *
-     *********************************************************.<br>
-     * [方法] pro_f0 <br>
-     * [描述] 非渠道分润 <br>
-     * [返回] void <br>
-     * [作者] UMF
-     * [时间] 2019年8月30日 下午1:13:06 <br>
-     *********************************************************.<br>
+     * @date 2020/8/18 15:18
+     * @param
+     * @return void
      */
     public void deal_00() throws Exception {
-
         try {
             if(!deal()) {
                 return;
@@ -196,7 +318,7 @@ public class TradingService {
                     }
                 }
                 NewUtils.paramHand(auMap,agMap);
-                dbdao.insert("insProData",auMap);
+//                dbdao.insert("insProData",auMap);
 //				if(new BigDecimal(auMap.get("level_tax_profit")).compareTo(new BigDecimal("0")) == 1) {
 //					jpush.pAll(agMap.get("agent_num"),auMap.get("level_tax_profit"));
 //				}
@@ -217,14 +339,11 @@ public class TradingService {
     }
 
     /**
+     * 渠道分润
      *
-     *********************************************************.<br>
-     * [方法] pro_f1 <br>
-     * [描述] 渠道分润<br>
-     * [返回] void <br>
-     * [作者] UMF
-     * [时间] 2019年8月30日 下午1:12:53 <br>
-     *********************************************************.<br>
+     * @date 2020/8/18 15:18
+     * @param
+     * @return void
      */
     public void deal_01() throws Exception {
         if(!deal()) {
@@ -248,18 +367,13 @@ public class TradingService {
     }
 
     /**
+     * 获取基础数据
      *
-     *********************************************************.<br>
-     * [方法] deal <br>
-     * [描述] <br>
-     * [参数] <br>
-     * [返回] boolean <br>
-     * [作者] UMF
-     * [时间] 2019年9月2日 下午1:31:45 <br>
-     *********************************************************.<br>
+     * @date 2020/8/18 15:18
+     * @param
+     * @return boolean
      */
     public boolean deal() {
-
         try {
             /** 根据流水号查询分润表是否存在 */
             Integer serial = dbdao.getInteger("selSerial", NewUtils.add("isChannel",isChannel,"serial",posReqMap.get("serial")));
@@ -334,14 +448,11 @@ public class TradingService {
     }
 
     /**
+     * ip校验
      *
-     *********************************************************.<br>
-     * [方法] checkIp <br>
-     * [描述] ip校验 <br>
-     * [返回] boolean <br>
-     * [作者] UMF
-     * [时间] 2019年8月30日 下午2:08:47 <br>
-     *********************************************************.<br>
+     * @date 2020/8/18 15:19
+     * @param
+     * @return boolean
      */
     public boolean checkIp() throws Exception {
         String[] strIp = config.getIp();
@@ -357,14 +468,11 @@ public class TradingService {
     }
 
     /**
+     * mak校验
      *
-     *********************************************************.<br>
-     * [方法] checkMak <br>
-     * [描述] mak校验 <br>
-     * [返回] boolean <br>
-     * [作者] UMF
-     * [时间] 2019年8月30日 下午2:09:09 <br>
-     *********************************************************.<br>
+     * @date 2020/8/18 15:19
+     * @param
+     * @return boolean
      */
     public boolean checkMak() throws Exception {
         String s = pro.holdSignature(posReqMap);
@@ -374,17 +482,13 @@ public class TradingService {
     }
 
     /**
+     * 查询小微商户的数据
      *
-     *********************************************************.<br>
-     * [方法] checkMak <br>
-     * [描述] 查询小微商户的数据 <br>
-     * [返回] boolean <br>
-     * [作者] UMF
-     * [时间] 2019年8月30日 下午2:09:09 <br>
-     *********************************************************.<br>
+     * @date 2020/8/18 15:19
+     * @param
+     * @return void
      */
     public void mainServiceXw() throws Exception {
-
         /** 校验mac */
         if(!checkMak()){
             System.out.println("小微Mak校验异常......");
