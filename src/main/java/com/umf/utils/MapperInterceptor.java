@@ -43,41 +43,20 @@ public class MapperInterceptor implements Interceptor {
 //        String oldsql = boundSql.getSql();
         // 获取节点的配置
         Configuration configuration = mappedStatement.getConfiguration();
-        // 最终的sql语句
-        String newsql = showSql(configuration, boundSql);
-        System.out.println(log);
-        log.infoSql(mappedStatement.getId(),parameter,newsql);
-
-        /** 变量名小写,变量值类型转换 */
+        /** 最终的sql语句 */
+        String sql = showSql(configuration, boundSql);
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("调用方法："+mappedStatement.getId());
+        System.out.println("传入参数："+splicingVal(parameter));
+        System.out.println("完整参数："+parameter);
+        System.out.println("sql语句："+"\n"+sql);
+        System.out.println("--------------------------------------------------------------------------------------------");
+        log.infoSql(mappedStatement.getId(),parameter,sql);
         Object result = null;
         try {
+            /** 变量名小写,变量值类型转换 */
             result = invocation.proceed();
-            // 获取mapper标签的resultType，返现类型
-            List<ResultMap> rms = mappedStatement.getResultMaps();
-            ResultMap rm = CollectionUtils.isEmpty(rms) ? null : rms.get(0);
-            Class<?> type = rm == null ? null : rm.getType();
-//            String typeName = rm != null && rm.getType() != null ? rm.getType().getSimpleName() : "";   // 简称
-            // 判断返现类型是否为map，根据结果集类型修改（否则即使查询结果为字符串整数，结果集仍然为list集合）
-            if(result != null && !"".equals(result)){
-                if(type == Map.class){
-                    if(result instanceof List){
-                        List<Map<String, Object>> list = (List<Map<String, Object>>) result;
-                        for(ListIterator<Map<String, Object>> it = list.listIterator(); it.hasNext();){
-                            Map<String, Object> map = it.next();
-                            Map<String, Object> newMap = new HashMap();
-                            map.forEach((k,v) -> newMap.put(k.toLowerCase(),v==null?"":v.toString()));
-                            it.remove();
-                            it.add(newMap);
-                        }
-                    }
-                    if(result instanceof Map){
-                        Map<String, Object> map = (Map<String, Object>) result;
-                        Map<String, Object> newMap = new HashMap();
-                        map.forEach((k,v) -> newMap.put(k.toLowerCase(),v==null?"":v.toString()));
-                        map = newMap;
-                    }
-                }
-            }
+            changeType(result, mappedStatement);
         } catch (InvocationTargetException e) {
             e.printStackTrace();
             log.errorE(e);
@@ -173,11 +152,9 @@ public class MapperInterceptor implements Interceptor {
     public String splicingVal(Object parameter) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         StringBuilder sb = new StringBuilder();
         Class clazz = parameter.getClass();
-        Class superclazz = clazz.getSuperclass();
-        Class[] clazzs = {clazz,superclazz};
-        for(Class cla : clazzs){
-            if(cla != null){
-                Field[] fields = cla.getDeclaredFields();
+        if (clazz.getName().contains("entity.business")){   // 实体类路径
+            if(clazz != null){
+                Field[] fields = clazz.getDeclaredFields();
                 for(Field field : fields){
                     String name = field.getName();
                     Method method = clazz.getMethod("get" + name.substring(0, 1).toUpperCase() + name.substring(1));
@@ -187,9 +164,56 @@ public class MapperInterceptor implements Interceptor {
                     }
                 }
             }
+            sb.deleteCharAt(sb.length()-1);
+        }else if(parameter instanceof Map){     // Map集合
+            Map<String,String> parameter1 = (Map) parameter;
+            for(Map.Entry<String,String> entry : parameter1.entrySet()){
+                if(entry.getValue() != null){
+                    sb.append(entry.getKey()).append(" = \"").append(entry.getValue()).append("\"").append(",");
+                }
+            }
+            sb.deleteCharAt(sb.length()-1);
+        }else {     // 其他数据类型
+            sb.append(parameter.toString());
         }
-        sb.deleteCharAt(sb.length()-1);
         return sb.toString();
+    }
+
+    /**
+     * 变量名小写,变量值类型转换
+     *
+     * @date 2020/9/21 15:03
+     * @param result
+     * @param mappedStatement
+     * @return void
+     */
+    public void changeType(Object result, MappedStatement mappedStatement) {
+        // 获取mapper标签的resultType，返现类型
+        List<ResultMap> rms = mappedStatement.getResultMaps();
+        ResultMap rm = CollectionUtils.isEmpty(rms) ? null : rms.get(0);
+        Class<?> type = rm == null ? null : rm.getType();
+//            String typeName = rm != null && rm.getType() != null ? rm.getType().getSimpleName() : "";   // 简称
+        // 判断返现类型是否为map，根据结果集类型修改（否则即使查询结果为字符串整数，结果集仍然为list集合）
+        if(result != null && !"".equals(result)){
+            if(type == Map.class){
+                if(result instanceof List){
+                    List<Map<String, Object>> list = (List<Map<String, Object>>) result;
+                    for(ListIterator<Map<String, Object>> it = list.listIterator(); it.hasNext();){
+                        Map<String, Object> map = it.next();
+                        Map<String, Object> newMap = new HashMap();
+                        map.forEach((k,v) -> newMap.put(k.toLowerCase(),v==null?"":v.toString()));
+                        it.remove();
+                        it.add(newMap);
+                    }
+                }
+                if(result instanceof Map){
+                    Map<String, Object> map = (Map<String, Object>) result;
+                    Map<String, Object> newMap = new HashMap();
+                    map.forEach((k,v) -> newMap.put(k.toLowerCase(),v==null?"":v.toString()));
+                    map = newMap;
+                }
+            }
+        }
     }
 
 }
