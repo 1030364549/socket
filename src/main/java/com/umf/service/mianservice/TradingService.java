@@ -1,17 +1,25 @@
 package com.umf.service.mianservice;
 
 import com.alibaba.excel.metadata.Sheet;
+import com.google.code.kaptcha.Producer;
 import com.umf.config.Config;
 import com.umf.dao.Impl.DBDaoImpl;
 import com.umf.socket.client.Jpush;
 import com.umf.utils.*;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 import java.util.*;
 
 import com.umf.service.profitservice.impl.ProfitImpl;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import org.apache.axis.encoding.Base64;
 
 @SuppressWarnings("all")
 @Component
@@ -42,6 +50,10 @@ public class TradingService {
     @Autowired
     private ProfitImpl pro;
 
+    // 生成验证码图片配置
+    @Resource
+    private Producer producer;
+
     public void insRunningData(String reqpack, String ipp) {
         this.reqpack = reqpack;
         this.ip = ipp;
@@ -54,6 +66,43 @@ public class TradingService {
             e.printStackTrace();
             log.errorE(e);
         }
+    }
+
+    @SneakyThrows
+    public void img(){
+        // 正确验证码（KaptchaConfig配置类生成验证码图片）
+        // 生成验证码图片，转换为Base64流形式，将生成的验证码填入图片中
+        String code = WordUtil.getWord(4);
+        System.out.println("正确验证码：" + code);
+        BufferedImage image = producer.createImage(code);
+        // 错误验证码
+        String codes = code + WordUtil.getWord(2);
+        // 乱序验证码
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        while(true){
+            String c = String.valueOf(codes.charAt(random.nextInt(codes.length())));
+            // 当前字符串不存在拼接
+            if(sb.indexOf(c) == -1){
+                sb.append(c);
+            }
+            // 长度相等退出
+            if(sb.length() == codes.length()){
+                break;
+            }
+        }
+        System.out.println("乱序验证码：" + sb);
+        // 图片验证码写入流，转为base64传回
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        ImageIO.write(image, "png", stream);
+        String base64 = Base64.encode(stream.toByteArray());
+        Map<String,String> map = new HashMap<>();
+        map.put("wordCode",sb.toString());
+        map.put("base64",base64);
+    }
+
+    public void test1(){
+        dbdao.getObjectList("getPageListStatistics21",null);
     }
 
     public void excel(){

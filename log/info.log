@@ -1,4 +1,29 @@
-[14:25:48:059] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 26600 (F:\work\sp-lfb-profit\target\classes started by asus in F:\work\sp-lfb-profit)
-[14:25:48:086] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
-[14:25:49:127] [INFO] - org.springframework.aop.framework.CglibAopProxy.doValidateClass(CglibAopProxy.java:262) - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
-[14:25:49:258] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 1.514 seconds (JVM running for 2.513)
+[17:27:43:755] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting SocketApplication on DESKTOP-CLOPQ62 with PID 18448 (F:\work\sp-lfb-profit\target\classes started by asus in F:\work\sp-lfb-profit)
+[17:27:43:872] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651) - No active profile set, falling back to default profiles: default
+[17:27:45:622] [INFO] - org.springframework.aop.framework.CglibAopProxy.doValidateClass(CglibAopProxy.java:262) - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+[17:27:45:816] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started SocketApplication in 3.055 seconds (JVM running for 4.568)
+[17:29:11:321] [INFO] - com.umf.utils.LogUtil.info(LogUtil.java:30) - ************************************************************
+【系统时间】:2021-04-01 17:29:11
+【请求地址】:/127.0.0.1
+【交易流水】:100034286328
+【请求报文】:{merno=100000000167702, msgtype=H007, posno=100001394407, serial=100034286328, signature=71CCE4E14A35122B31F176795BBDDA0F}
+
+[17:29:11:842] [INFO] - com.umf.utils.LogUtil.infoSql(LogUtil.java:40) - ************************************************************
+【系统时间】:2021-04-01 17:29:11
+【请求方法】:com.umf.dao.DBDao.getPageListStatistics21
+【查询参数】:null
+【执行语句】:SELECT T2.* FROM(SELECT PD.*,ROWNUM RN FROM ( select * from formal_pos ) PD WHERE ROWNUM < 101 ) T2 WHERE T2.RN >= 1
+
+[17:29:12:062] [INFO] - com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:947) - {dataSource-1} inited
+[17:39:12:684] [INFO] - com.umf.utils.LogUtil.info(LogUtil.java:30) - ************************************************************
+【系统时间】:2021-04-01 17:39:12
+【请求地址】:/127.0.0.1
+【交易流水】:100034286328
+【请求报文】:{merno=100000000167702, msgtype=H007, posno=100001394407, serial=100034286328, signature=71CCE4E14A35122B31F176795BBDDA0F}
+
+[17:39:12:705] [INFO] - com.umf.utils.LogUtil.infoSql(LogUtil.java:40) - ************************************************************
+【系统时间】:2021-04-01 17:39:12
+【请求方法】:com.umf.dao.DBDao.getPageListStatistics21
+【查询参数】:null
+【执行语句】:SELECT T2.* FROM(SELECT PD.*,ROWNUM RN FROM ( select * from formal_pos ) PD WHERE ROWNUM < 101 ) T2 WHERE T2.RN >= 1
+

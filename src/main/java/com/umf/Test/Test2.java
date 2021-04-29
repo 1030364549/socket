@@ -23,7 +23,7 @@ public class Test2 {
         list.add(3);
 //        list.add(2);
         try {
-            System.out.println(NewUtils.judgeType(list,Boolean.class));
+            System.out.println(NewUtils.judgeType(list,String.class));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {

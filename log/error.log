@@ -1,25 +1,27 @@
-[15:20:05:429] [ERROR] - com.umf.utils.LogUtil.errorE(LogUtil.java:50) - ************************************************************
-【系统时间】:2020-09-11 15:20:05
-【交易流水】:100034286328
-【错误信息】:java.lang.reflect.InvocationTargetException
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
-	at com.umf.utils.MapperInterceptor.intercept(MapperInterceptor.java:54)
-	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
-	at com.sun.proxy.$Proxy66.query(Unknown Source)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+[16:47:24:097] [ERROR] - com.umf.utils.LogUtil.errorS(LogUtil.java:62) - ************************************************************
+【系统时间】:2020-11-17 16:47:24
+【错误信息】:java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at com.umf.socket.server.SocketServer$1.run(SocketServer.java:40)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+
+[16:49:27:606] [ERROR] - com.umf.utils.LogUtil.errorS(LogUtil.java:62) - ************************************************************
+【系统时间】:2020-11-17 16:49:27
+【错误信息】:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### Cause: java.lang.NullPointerException
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:77)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
 	at com.sun.proxy.$Proxy59.selectList(Unknown Source)
 	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
-	at com.umf.dao.Impl.DBDaoImpl.getList(DBDaoImpl.java:37)
+	at com.umf.dao.Impl.DBDaoImpl.getObjectList(DBDaoImpl.java:51)
 	at com.umf.dao.Impl.DBDaoImpl$$FastClassBySpringCGLIB$$fa83b24f.invoke(<generated>)
 	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
@@ -29,85 +31,44 @@
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.umf.dao.Impl.DBDaoImpl$$EnhancerBySpringCGLIB$$bb91564c.getList(<generated>)
-	at com.umf.service.mianservice.TradingService.mainService(TradingService.java:68)
+	at com.umf.dao.Impl.DBDaoImpl$$EnhancerBySpringCGLIB$$63f7145a.getObjectList(<generated>)
+	at com.umf.service.mianservice.TradingService.excel(TradingService.java:173)
 	at com.umf.socket.server.SocketServer$1.run(SocketServer.java:64)
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-Caused by: org.apache.ibatis.type.TypeException: Could not set parameters for mapping: ParameterMapping{property='modelname', mode=IN, javaType=class java.lang.Object, jdbcType=null, numericScale=null, resultMapId='null', jdbcTypeName='null', expression='null'}. Cause: org.apache.ibatis.type.TypeException: Error setting non null for parameter #1 with JdbcType null . Try setting a different JdbcType for this parameter or a different configuration property. Cause: org.apache.ibatis.type.TypeException: Error setting non null for parameter #1 with JdbcType null . Try setting a different JdbcType for this parameter or a different configuration property. Cause: java.sql.SQLException: 无效的列索引
-	at org.apache.ibatis.scripting.defaults.DefaultParameterHandler.setParameters(DefaultParameterHandler.java:89)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.parameterize(PreparedStatementHandler.java:93)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.parameterize(RoutingStatementHandler.java:64)
-	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:86)
-	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:62)
-	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
-	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
-	... 33 more
-Caused by: org.apache.ibatis.type.TypeException: Error setting non null for parameter #1 with JdbcType null . Try setting a different JdbcType for this parameter or a different configuration property. Cause: org.apache.ibatis.type.TypeException: Error setting non null for parameter #1 with JdbcType null . Try setting a different JdbcType for this parameter or a different configuration property. Cause: java.sql.SQLException: 无效的列索引
-	at org.apache.ibatis.type.BaseTypeHandler.setParameter(BaseTypeHandler.java:55)
-	at org.apache.ibatis.scripting.defaults.DefaultParameterHandler.setParameters(DefaultParameterHandler.java:87)
-	... 41 more
-Caused by: org.apache.ibatis.type.TypeException: Error setting non null for parameter #1 with JdbcType null . Try setting a different JdbcType for this parameter or a different configuration property. Cause: java.sql.SQLException: 无效的列索引
-	at org.apache.ibatis.type.BaseTypeHandler.setParameter(BaseTypeHandler.java:55)
-	at org.apache.ibatis.type.UnknownTypeHandler.setNonNullParameter(UnknownTypeHandler.java:45)
-	at org.apache.ibatis.type.BaseTypeHandler.setParameter(BaseTypeHandler.java:53)
-	... 42 more
-Caused by: java.sql.SQLException: 无效的列索引
-	at oracle.jdbc.driver.OraclePreparedStatement.setFormOfUseInternal(OraclePreparedStatement.java:10137)
-	at oracle.jdbc.driver.OraclePreparedStatement.setFormOfUseInternal(OraclePreparedStatement.java:10118)
-	at oracle.jdbc.driver.OraclePreparedStatement.setString(OraclePreparedStatement.java:4879)
-	at oracle.jdbc.driver.OraclePreparedStatementWrapper.setString(OraclePreparedStatementWrapper.java:257)
-	at com.alibaba.druid.pool.DruidPooledPreparedStatement.setString(DruidPooledPreparedStatement.java:370)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:67)
-	at com.sun.proxy.$Proxy68.setString(Unknown Source)
-	at org.apache.ibatis.type.StringTypeHandler.setNonNullParameter(StringTypeHandler.java:31)
-	at org.apache.ibatis.type.StringTypeHandler.setNonNullParameter(StringTypeHandler.java:26)
-	at org.apache.ibatis.type.BaseTypeHandler.setParameter(BaseTypeHandler.java:53)
-	... 44 more
-
-
-
-[15:20:05:435] [ERROR] - com.umf.utils.LogUtil.errorE(LogUtil.java:50) - ************************************************************
-【系统时间】:2020-09-11 15:20:05
-【交易流水】:100034286328
-【错误信息】:java.lang.NullPointerException
-	at com.umf.service.mianservice.TradingService.mainService(TradingService.java:71)
-	at com.umf.socket.server.SocketServer$1.run(SocketServer.java:64)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-
-
-
-[15:25:04:475] [ERROR] - com.umf.utils.LogUtil.errorE(LogUtil.java:50) - ************************************************************
-【系统时间】:2020-09-11 15:25:04
-【交易流水】:100034286328
-【错误信息】:java.lang.reflect.InvocationTargetException
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
-	at com.umf.utils.MapperInterceptor.intercept(MapperInterceptor.java:54)
-	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
-	at com.sun.proxy.$Proxy66.query(Unknown Source)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### Cause: java.lang.NullPointerException
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:150)
 	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:497)
 	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 18 more
+Caused by: java.lang.NullPointerException
+	at com.umf.utils.MapperInterceptor.splicingVal(MapperInterceptor.java:160)
+	at com.umf.utils.MapperInterceptor.intercept(MapperInterceptor.java:56)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy66.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	... 24 more
+
+
+
+[16:55:51:868] [ERROR] - com.umf.utils.LogUtil.errorS(LogUtil.java:62) - ************************************************************
+【系统时间】:2020-11-17 16:55:51
+【错误信息】:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### Cause: java.lang.NullPointerException
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:77)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
 	at com.sun.proxy.$Proxy59.selectList(Unknown Source)
 	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
-	at com.umf.dao.Impl.DBDaoImpl.getList(DBDaoImpl.java:37)
+	at com.umf.dao.Impl.DBDaoImpl.getObjectList(DBDaoImpl.java:51)
 	at com.umf.dao.Impl.DBDaoImpl$$FastClassBySpringCGLIB$$fa83b24f.invoke(<generated>)
 	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
@@ -117,60 +78,172 @@ Caused by: java.sql.SQLException: 无效的列索引
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.umf.dao.Impl.DBDaoImpl$$EnhancerBySpringCGLIB$$453004fd.getList(<generated>)
-	at com.umf.service.mianservice.TradingService.mainService(TradingService.java:68)
+	at com.umf.dao.Impl.DBDaoImpl$$EnhancerBySpringCGLIB$$63f7145a.getObjectList(<generated>)
+	at com.umf.service.mianservice.TradingService.excel(TradingService.java:173)
 	at com.umf.socket.server.SocketServer$1.run(SocketServer.java:64)
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-Caused by: java.sql.SQLSyntaxErrorException: ORA-00904: "签A版": 标识符无效
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:509)
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:461)
-	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1104)
-	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:550)
-	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:268)
-	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:655)
-	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:270)
-	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:91)
-	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:807)
-	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:983)
-	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1168)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3666)
-	at oracle.jdbc.driver.T4CPreparedStatement.executeInternal(T4CPreparedStatement.java:1426)
-	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:3778)
-	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1081)
-	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:498)
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### Cause: java.lang.NullPointerException
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:150)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
-	at com.sun.proxy.$Proxy68.execute(Unknown Source)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:63)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
-	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
-	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
-	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
-	... 33 more
-Caused by: Error : 904, Position : 52, Sql = select * from merchant_model where modelname = '%'||签A版||'%', OriginalSql = select * from merchant_model where modelname = '%'||签A版||'%', Error Msg = ORA-00904: "签A版": 标识符无效
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:513)
-	... 61 more
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 18 more
+Caused by: java.lang.NullPointerException
+	at com.umf.utils.MapperInterceptor.splicingVal(MapperInterceptor.java:160)
+	at com.umf.utils.MapperInterceptor.intercept(MapperInterceptor.java:56)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy66.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	... 24 more
 
 
 
-[15:25:04:476] [ERROR] - com.umf.utils.LogUtil.errorE(LogUtil.java:50) - ************************************************************
-【系统时间】:2020-09-11 15:25:04
-【交易流水】:100034286328
-【错误信息】:java.lang.NullPointerException
-	at com.umf.service.mianservice.TradingService.mainService(TradingService.java:71)
+[16:56:11:054] [ERROR] - com.umf.utils.LogUtil.errorS(LogUtil.java:62) - ************************************************************
+【系统时间】:2020-11-17 16:56:11
+【错误信息】:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### Cause: java.lang.NullPointerException
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:77)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy59.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at com.umf.dao.Impl.DBDaoImpl.getObjectList(DBDaoImpl.java:51)
+	at com.umf.dao.Impl.DBDaoImpl$$FastClassBySpringCGLIB$$fa83b24f.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
+	at com.umf.dao.Impl.DBDaoImpl$$EnhancerBySpringCGLIB$$63f7145a.getObjectList(<generated>)
+	at com.umf.service.mianservice.TradingService.excel(TradingService.java:173)
 	at com.umf.socket.server.SocketServer$1.run(SocketServer.java:64)
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### Cause: java.lang.NullPointerException
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:150)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 18 more
+Caused by: java.lang.NullPointerException
+	at com.umf.utils.MapperInterceptor.splicingVal(MapperInterceptor.java:160)
+	at com.umf.utils.MapperInterceptor.intercept(MapperInterceptor.java:56)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy66.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	... 24 more
+
+
+
+[16:57:12:043] [ERROR] - com.umf.utils.LogUtil.errorS(LogUtil.java:62) - ************************************************************
+【系统时间】:2020-11-17 16:57:12
+【错误信息】:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### Cause: java.lang.NullPointerException
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:77)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy59.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at com.umf.dao.Impl.DBDaoImpl.getObjectList(DBDaoImpl.java:51)
+	at com.umf.dao.Impl.DBDaoImpl$$FastClassBySpringCGLIB$$fa83b24f.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
+	at com.umf.dao.Impl.DBDaoImpl$$EnhancerBySpringCGLIB$$63f7145a.getObjectList(<generated>)
+	at com.umf.service.mianservice.TradingService.excel(TradingService.java:173)
+	at com.umf.socket.server.SocketServer$1.run(SocketServer.java:64)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### Cause: java.lang.NullPointerException
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:150)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 18 more
+Caused by: java.lang.NullPointerException
+	at com.umf.utils.MapperInterceptor.splicingVal(MapperInterceptor.java:160)
+	at com.umf.utils.MapperInterceptor.intercept(MapperInterceptor.java:56)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy66.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	... 24 more
+
+
+
+[16:57:40:062] [ERROR] - com.umf.utils.LogUtil.errorS(LogUtil.java:62) - ************************************************************
+【系统时间】:2020-11-17 16:57:40
+【错误信息】:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### Cause: java.lang.NullPointerException
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:77)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy59.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at com.umf.dao.Impl.DBDaoImpl.getObjectList(DBDaoImpl.java:51)
+	at com.umf.dao.Impl.DBDaoImpl$$FastClassBySpringCGLIB$$fa83b24f.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
+	at com.umf.dao.Impl.DBDaoImpl$$EnhancerBySpringCGLIB$$63f7145a.getObjectList(<generated>)
+	at com.umf.service.mianservice.TradingService.excel(TradingService.java:173)
+	at com.umf.socket.server.SocketServer$1.run(SocketServer.java:64)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### Cause: java.lang.NullPointerException
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:150)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 18 more
+Caused by: java.lang.NullPointerException
+	at com.umf.utils.MapperInterceptor.splicingVal(MapperInterceptor.java:160)
+	at com.umf.utils.MapperInterceptor.intercept(MapperInterceptor.java:56)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy66.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	... 24 more
 
 
 

@@ -40,6 +40,9 @@ public class Test6stream {
         // 将集合中所有map集合中的name转换为大写并提取到集合中
         name(list1);
         System.out.println("-----------------------------------------------------------------");
+        // 将集合中所有的年龄加在一起
+        summing(list1);
+        System.out.println("-----------------------------------------------------------------");
         List<String> list2 = new ArrayList(){{
             add("123");add("456");add("789");add("qwer");add("asdf");add("zxcv");add("hhhhhhh");add("gggggggg");add("yyyyyyyyy"); }};
         // groupingBy 分组，将集合中所有数据根据字符串长度进行分组，生成集合默认为Map，内部集合默认为List
@@ -113,5 +116,17 @@ public class Test6stream {
         Map<Boolean,Set<String>> map2 = list.stream().collect(Collectors.partitioningBy(e -> e.length() > 7,Collectors.toSet()));
         System.out.println(map);
         System.out.println(map2);
+    }
+
+    /**
+     * 将集合中所有的年龄加在一起
+     *
+     * @date 2020/9/23 9:54
+     * @param list
+     * @return
+     */
+    public static void summing(List<Map> list){
+        Integer age = list.stream().collect(Collectors.summingInt(map -> Integer.parseInt(map.get("age").toString())));
+        System.out.println(age);
     }
 }

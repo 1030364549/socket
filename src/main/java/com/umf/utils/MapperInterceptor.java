@@ -24,6 +24,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
 
+/**
+ * mybatis拦截器，打印完整sql和参数，对返回数据进行处理
+ *
+ * @date 2020/11/17 16:40
+ * @return
+ */
 //@Component
 //@DependsOn({"springUtil"})    /*需要依赖的spring类*/
 @SuppressWarnings("all")
@@ -151,30 +157,32 @@ public class MapperInterceptor implements Interceptor {
      */
     public String splicingVal(Object parameter) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         StringBuilder sb = new StringBuilder();
-        Class clazz = parameter.getClass();
-        if (clazz.getName().contains("entity.business")){   // 实体类路径
-            if(clazz != null){
-                Field[] fields = clazz.getDeclaredFields();
-                for(Field field : fields){
-                    String name = field.getName();
-                    Method method = clazz.getMethod("get" + name.substring(0, 1).toUpperCase() + name.substring(1));
-                    Object value = method.invoke(parameter);
-                    if(value != null){
-                        sb.append(name).append(" = \"").append(value).append("\"").append(",");
+        if(!ObjectUtils.isEmpty(parameter)){
+            Class clazz = parameter.getClass();
+            if (clazz.getName().contains("entity.business")){   // 实体类路径
+                if(clazz != null){
+                    Field[] fields = clazz.getDeclaredFields();
+                    for(Field field : fields){
+                        String name = field.getName();
+                        Method method = clazz.getMethod("get" + name.substring(0, 1).toUpperCase() + name.substring(1));
+                        Object value = method.invoke(parameter);
+                        if(value != null){
+                            sb.append(name).append(" = \"").append(value).append("\"").append(",");
+                        }
                     }
                 }
-            }
-            sb.deleteCharAt(sb.length()-1);
-        }else if(parameter instanceof Map){     // Map集合
-            Map<String,String> parameter1 = (Map) parameter;
-            for(Map.Entry<String,String> entry : parameter1.entrySet()){
-                if(entry.getValue() != null){
-                    sb.append(entry.getKey()).append(" = \"").append(entry.getValue()).append("\"").append(",");
+                sb.deleteCharAt(sb.length()-1);
+            }else if(parameter instanceof Map){     // Map集合
+                Map<String,String> parameter1 = (Map) parameter;
+                for(Map.Entry<String,String> entry : parameter1.entrySet()){
+                    if(entry.getValue() != null){
+                        sb.append(entry.getKey()).append(" = \"").append(entry.getValue()).append("\"").append(",");
+                    }
                 }
+                sb.deleteCharAt(sb.length()-1);
+            }else {     // 其他数据类型
+                sb.append(parameter.toString());
             }
-            sb.deleteCharAt(sb.length()-1);
-        }else {     // 其他数据类型
-            sb.append(parameter.toString());
         }
         return sb.toString();
     }
@@ -192,7 +200,7 @@ public class MapperInterceptor implements Interceptor {
         List<ResultMap> rms = mappedStatement.getResultMaps();
         ResultMap rm = CollectionUtils.isEmpty(rms) ? null : rms.get(0);
         Class<?> type = rm == null ? null : rm.getType();
-//            String typeName = rm != null && rm.getType() != null ? rm.getType().getSimpleName() : "";   // 简称
+//        String typeName = rm != null && rm.getType() != null ? rm.getType().getSimpleName() : "";   // 简称
         // 判断返现类型是否为map，根据结果集类型修改（否则即使查询结果为字符串整数，结果集仍然为list集合）
         if(result != null && !"".equals(result)){
             if(type == Map.class){
