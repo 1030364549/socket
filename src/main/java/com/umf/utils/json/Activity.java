@@ -16,9 +16,12 @@ public class Activity {
     private String sn;
     private String agentNum;
     private String agentName;
-    private String moneyAct;
-    private String moneyUp;
+//    private String moneyAct;
+//    private String moneyUp;
     private String taxMoney;
-    private String auditdateAct;
-    private String auditdateUp;
+//    private String auditdateAct;
+//    private String auditdateUp;
+    private String money;
+    private String auditdate;
+    private String profitType;
 }

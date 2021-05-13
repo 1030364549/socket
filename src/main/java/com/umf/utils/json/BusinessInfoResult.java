@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class BusinessInfoResult {
-    private List<Activity> activity;
+    private List<Activity> actTrComplianceDetailed;
 
 
 }

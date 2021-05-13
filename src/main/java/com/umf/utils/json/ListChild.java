@@ -1,8 +1,9 @@
 package com.umf.utils.json;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class ListChild {
+public class ListChild implements Serializable {
 
     private String key;
     private String name;

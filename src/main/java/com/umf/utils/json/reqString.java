@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ public class reqString {
      * @param map   填入集合中的数据
      * @return
      */
-    public static List<Container> JsongToString(List<Container> datas,Map<String, Object> map){
+    public static List<Container> JsongToString(List<Container> datas,Map<String, Object> map) throws IOException, ClassNotFoundException {
         List<Container> list = new ArrayList<>();
         for (int i = 0; i < datas.size(); i++) {
             // 获取当前模板的list数据
@@ -64,28 +65,12 @@ public class reqString {
                                 }
                             }
                         }
-                        List<ListChild> li = new ArrayList<>();
-                        for (ListChild listChild : businessList) {
-                            ListChild l = new ListChild();
-                            l.setKey(listChild.getKey());
-                            l.setName(listChild.getName());
-                            l.setValue(listChild.getValue());
-                            l.setMapping(listChild.getMapping());
-                            li.add(l);
-//                            System.out.println("~~~~~~~~~~~~~~");
-//                            System.out.println(listChild.getKey());
-//                            System.out.println(listChild.getName());
-//                            System.out.println(listChild.getValue());
-//                            System.out.println("~~~~~~~~~~~~~~");
-                        }
+
                         Container container = new Container();
                         container.setKey(datas.get(i).getKey());
                         container.setName(datas.get(i).getName());
-                        container.setList(li);
-//                        Container container = datas.get(i);
-//                        container.setList(li);
+                        container.setList(deepCopy(businessList));
                         list.add(container);
-//                        System.out.println("结束");
                     }
                 }
             }
@@ -112,4 +97,18 @@ public class reqString {
 //            return null;
 //        }
 //    }
+
+
+    // 序列化赋值，将传入集合深拷贝给新的集合
+    public static <T> List<T> deepCopy(List<T> src) throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+        ObjectOutputStream out = new ObjectOutputStream(byteOut);
+        out.writeObject(src);
+
+        ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
+        ObjectInputStream in = new ObjectInputStream(byteIn);
+        @SuppressWarnings("unchecked")
+        List<T> dest = (List<T>) in.readObject();
+        return dest;
+    }
 }
